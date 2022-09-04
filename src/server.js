@@ -4,7 +4,7 @@ const setupExpressServer = () => {
   const app = express();
   app.use(express.json());
 
-  app.get("api/test", (req, res) => {
+  app.get("/api/test", (req, res) => {
     res.send("Successful call to the server").status(200);
   });
 
