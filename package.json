@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "migrate:make": "knex migrate:make",
+    "migrate": "knex migrate:latest",
+    "seed:make": "knex seed:make",
+    "seed": "knex seed:run"
   },
   "repository": {
     "type": "git",
