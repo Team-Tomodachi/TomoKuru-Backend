@@ -3,7 +3,7 @@ const router = express.Router();
 /**
  * components:
  *  schemas:
- *    Users:
+ *    users:
  *      type: object
  *      required:
  *        - id
@@ -50,14 +50,14 @@ const router = express.Router();
  *    get:
  *      summary: Returns a list of all of the users
  *      responses:
- *        200:
+ *        '200':
  *          description: The list of users
  *          content:
  *            application/json:
  *              schema:
  *                type: array
  *                items:
- *                  $ref: '#/components/schemas/Users'
+ *                  $Ref: '#/components/schemas/users'
  *
  */
 router.get("/", (req, res) => {

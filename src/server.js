@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const usersRouter = require("../routes/users");
 const venuesRouter = require("../routes/venues");
 const groupsRouter = require("../routes/groups");
@@ -22,7 +23,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ["../routes/*.js"],
+  apis: [path.join(__dirname, "../routes/*.js")],
 };
 
 const swaggerSpecs = swaggerJsDoc(swaggerOptions);
