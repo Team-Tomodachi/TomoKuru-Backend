@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable("users", function (table) {
-    table.string("id").primary();
+    table.uuid("id").primary().defaultTo(knex.raw("gen_random_uuid()"));
     table.string("email", 32).unique().notNullable().index();
     table.string("firebase_id", 64).unique();
     table.string("account_type", 20);
