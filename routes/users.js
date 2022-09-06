@@ -65,6 +65,7 @@ router.get("/:email", async (req, res) => {
   const { email } = req.params;
   try {
     const user = await db("users")
+      .where("email", email)
       .select(
         "email",
         "first_name",
@@ -74,7 +75,6 @@ router.get("/:email", async (req, res) => {
         "prefecture",
         "title"
       )
-      .where("email", email)
       .timeout(1500);
     res.send(user).status(204);
   } catch (err) {
@@ -82,6 +82,28 @@ router.get("/:email", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/users:
+ *  post:
+ *    summary: Create a new user
+ *    tags: [Users]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $Ref: '#/components/schemas/users'
+ *    responses:
+ *      '200':
+ *        description: The User was successfully created
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $Ref: '#/components/schemas/users'
+ *      '500':
+ *         description: A server error occured
+ */
 router.post("/", async (req, res) => {
   const {
     email,
@@ -106,7 +128,7 @@ router.post("/", async (req, res) => {
     await db("users").insert(newUser);
     res.status(204).end();
   } catch (err) {
-    res.send(err).status(400);
+    res.send(err).status(500);
   }
 });
 
