@@ -10,6 +10,7 @@ exports.seed = async function (knex) {
     {
       email: "soccerGuySteve88@gmail.com",
       account_type: "user",
+      account_active: "active",
       first_name: "Steve",
       city_ward: "Tokyo",
       prefecture: "Kanto",
@@ -18,6 +19,7 @@ exports.seed = async function (knex) {
     {
       email: "JayJayJay@gmail.com",
       account_type: "vendor",
+      account_active: "active",
       first_name: "Jay",
       city_ward: "Tokyo",
       prefecture: "Kanto",
@@ -26,6 +28,7 @@ exports.seed = async function (knex) {
     {
       email: "Harry@potter.net",
       account_type: "user",
+      account_active: "active",
       first_name: "Jay",
       city_ward: "Hitoyoshi",
       prefecture: "Kumamoto",
@@ -34,6 +37,7 @@ exports.seed = async function (knex) {
     {
       email: "Mick_e@mouse.com",
       account_type: "vendor",
+      account_active: "active",
       first_name: "Mickey",
       city_ward: "Asahikawa",
       prefecture: "Hokkaido",
@@ -42,6 +46,7 @@ exports.seed = async function (knex) {
     {
       email: "Dorae@mon.com",
       account_type: "user",
+      account_active: "active",
       first_name: "Doraemon",
       city_ward: "Tokyo",
       prefecture: "Tokyo",
