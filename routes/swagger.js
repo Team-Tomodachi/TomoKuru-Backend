@@ -32,10 +32,9 @@
  *          type: string
  *          description: Title of the user
  *      example:
- *        id: ngk389d
- *        email: john(at)example.com
- *        account_type: 0
- *        active_account: 1
+ *        email: john@example.com
+ *        account_type: user
+ *        active_account: active
  *        first_name: John
  *        city_ward: Shinjuku
  *        prefecture: Tokyo
