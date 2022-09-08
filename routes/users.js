@@ -104,6 +104,7 @@ router.get("/:email", async (req, res) => {
  *      '500':
  *         description: A server error occured
  */
+
 router.post("/", async (req, res) => {
   const {
     email,
