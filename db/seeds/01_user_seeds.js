@@ -8,6 +8,7 @@ exports.seed = async function (knex) {
   await knex("users").del();
   await knex("users").insert([
     {
+      id: "0873a1d2-91cf-464b-b194-29d681bebf5b",
       email: "soccerGuySteve88@gmail.com",
       firebase_id: "123456",
       account_type: "user",
@@ -18,6 +19,7 @@ exports.seed = async function (knex) {
       title: "Soccer Fan",
     },
     {
+      id: "29f41b8f-1f6f-4e32-9623-d48acd5578ed",
       email: "JayJayJay@gmail.com",
       firebase_id: "456123",
       account_type: "vendor",
@@ -28,6 +30,7 @@ exports.seed = async function (knex) {
       title: "Cool Guy",
     },
     {
+      id: "2094584d-5818-4a02-88c2-02f9129429a9",
       email: "Harry@potter.net",
       firebase_id: "345612",
       account_type: "user",
@@ -38,6 +41,7 @@ exports.seed = async function (knex) {
       title: "Cool Guy",
     },
     {
+      id: "97e55e28-0599-42d6-95d4-6cfb20827548",
       email: "Mick_e@mouse.com",
       firebase_id: "345789",
       account_type: "vendor",
@@ -48,6 +52,7 @@ exports.seed = async function (knex) {
       title: "Mouse Tycoon",
     },
     {
+      id: "bccaaf5c-779a-4254-94d9-33edc64c93f7",
       email: "Dorae@mon.com",
       firebase_id: "789123",
       account_type: "user",
