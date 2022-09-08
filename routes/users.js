@@ -67,6 +67,7 @@ router.get("/:email", async (req, res) => {
     const user = await db("users")
       .where("email", email)
       .select(
+        "id",
         "email",
         "first_name",
         "account_type",
