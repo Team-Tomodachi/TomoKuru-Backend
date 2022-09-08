@@ -9,6 +9,7 @@ exports.seed = async function (knex) {
   await knex("users").insert([
     {
       email: "soccerGuySteve88@gmail.com",
+      firebase_id: "123456",
       account_type: "user",
       account_active: "active",
       first_name: "Steve",
@@ -18,6 +19,7 @@ exports.seed = async function (knex) {
     },
     {
       email: "JayJayJay@gmail.com",
+      firebase_id: "456123",
       account_type: "vendor",
       account_active: "active",
       first_name: "Jay",
@@ -27,6 +29,7 @@ exports.seed = async function (knex) {
     },
     {
       email: "Harry@potter.net",
+      firebase_id: "345612",
       account_type: "user",
       account_active: "active",
       first_name: "Jay",
@@ -36,6 +39,7 @@ exports.seed = async function (knex) {
     },
     {
       email: "Mick_e@mouse.com",
+      firebase_id: "345789",
       account_type: "vendor",
       account_active: "active",
       first_name: "Mickey",
@@ -45,6 +49,7 @@ exports.seed = async function (knex) {
     },
     {
       email: "Dorae@mon.com",
+      firebase_id: "789123",
       account_type: "user",
       account_active: "active",
       first_name: "Doraemon",
