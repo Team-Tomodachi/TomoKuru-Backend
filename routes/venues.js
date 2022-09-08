@@ -34,4 +34,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const {
+    email,
+    first_name,
+    firebase_id,
+    account_type,
+    city_ward,
+    prefecture,
+    title,
+  } = req.body;
+  const newUser = {
+    account_active: "active",
+    email: email,
+    first_name: first_name,
+    firebase_id: firebase_id,
+    account_type: account_type,
+    city_ward: city_ward || "",
+    prefecture: prefecture || "",
+    title: title || "",
+  };
+  try {
+    await db("users").insert(newUser);
+    res.status(204).end();
+  } catch (err) {
+    res.send(err).status(500);
+  }
+});
+
 module.exports = router;
