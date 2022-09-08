@@ -31,12 +31,50 @@
  *        title:
  *          type: string
  *          description: Title of the user
- *      example:
- *        email: john@example.com
- *        account_type: user
- *        active_account: active
- *        first_name: John
- *        city_ward: Shinjuku
- *        prefecture: Tokyo
- *        title: FullStack Developer
+ *    venues:
+ *      type: object
+ *      required:
+ *        - id
+ *        - user_id
+ *      properties:
+ *        id:
+ *          type: string
+ *          description: The auto-generated id of the venues
+ *        user_id:
+ *          type: string
+ *          description: ID of the user who created/owns the venue (foreign key)
+ *        location_name:
+ *          type: string
+ *          description: Name of the venue
+ *        city_ward:
+ *          type: string
+ *          description: Town of where the venue is located
+ *        prefecture:
+ *          type: string
+ *          description: Prefecture of where the venue is located
+ *        phone_num:
+ *          type: string
+ *          description: the phone number of the venue
+ *        address:
+ *          type: string
+ *          description: Venue address
+ *        description:
+ *          type: string
+ *          description: Brief description of the venue
+ *        num_seats:
+ *          type: integer
+ *          description: Capacity of patron seats at a venue
+ *        smoking:
+ *          type: string
+ *          description: Describes the smoking options available.
+ *        outdoor_seating:
+ *          type: boolean
+ *          description: Identifies if the venue has outdoor seating.
+ *        venue_url:
+ *          type: string
+ *          description: The URL of the venue
+ *        photo_link:
+ *          type: string
+ *          description: the link to the venue photo in the database
+ *
  */
