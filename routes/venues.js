@@ -62,4 +62,43 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const {
+    user_id,
+    location_name,
+    city_ward,
+    prefecture,
+    phone_num,
+    address,
+    venue_email,
+    description,
+    num_seats,
+    smoking,
+    outdoor_seating,
+    venue_url,
+    photo_link,
+  } = req.body;
+  const newVenue = {
+    user_id: user_id,
+    location_name: location_name,
+    city_ward: city_ward,
+    prefecture: prefecture,
+    phone_num: phone_num || "",
+    address: address || "",
+    venue_email: venue_email || "",
+    description: description || "",
+    num_seats: num_seats || "",
+    smoking: smoking || "",
+    outdoor_seating: outdoor_seating || "",
+    venue_url: venue_url || "",
+    photo_link: photo_link || "",
+  };
+  try {
+    await db("venues").insert(newVenue);
+    res.status(204).end();
+  } catch (err) {
+    res.send(err).status(500);
+  }
+});
+
 module.exports = router;
