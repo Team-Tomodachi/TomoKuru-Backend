@@ -34,6 +34,45 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const venues = await db("venues")
+      .where("user_id", id)
+      .select("*")
+      .timeout(1500);
+    res.send(venues).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/city/:city", async (req, res) => {
+  const { city } = req.params;
+  try {
+    const venues = await db("venues")
+      .where("city_ward", city)
+      .select("*")
+      .timeout(1500);
+    res.send(venues).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/prefecture/:prefecture", async (req, res) => {
+  const { prefecture } = req.params;
+  try {
+    const venues = await db("venues")
+      .where("prefecture", prefecture)
+      .select("*")
+      .timeout(1500);
+    res.send(venues).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 /**
  * @swagger
  * /api/venues:
@@ -56,34 +95,6 @@ router.get("/", async (req, res) => {
  *      '500':
  *         description: A server error occured
  */
-
-router.post("/", async (req, res) => {
-  const {
-    email,
-    first_name,
-    firebase_id,
-    account_type,
-    city_ward,
-    prefecture,
-    title,
-  } = req.body;
-  const newUser = {
-    account_active: "active",
-    email: email,
-    first_name: first_name,
-    firebase_id: firebase_id,
-    account_type: account_type,
-    city_ward: city_ward || "",
-    prefecture: prefecture || "",
-    title: title || "",
-  };
-  try {
-    await db("users").insert(newUser);
-    res.status(204).end();
-  } catch (err) {
-    res.send(err).status(500);
-  }
-});
 
 router.post("/", async (req, res) => {
   const {
