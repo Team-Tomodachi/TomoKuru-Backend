@@ -77,7 +77,7 @@ router.get("/:email", async (req, res) => {
         "title"
       )
       .timeout(1500);
-    res.send(user).status(204);
+    res.send(user).status(200);
   } catch (err) {
     res.send(err).status(404);
   }
@@ -128,7 +128,7 @@ router.post("/", async (req, res) => {
   };
   try {
     await db("users").insert(newUser);
-    res.status(204).end();
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
   }
@@ -151,7 +151,7 @@ router.patch("/:email/activation", async (req, res) => {
     await db("users")
       .where("email", email)
       .update({ account_active: "inactive" });
-    res.status(204).end();
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(404);
   }
