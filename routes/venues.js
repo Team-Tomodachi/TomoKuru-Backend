@@ -34,6 +34,29 @@ router.get("/", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/venues:
+ *  post:
+ *    summary: Create a new venue
+ *    tags: [Venues]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $Ref: '#/components/schemas/venues'
+ *    responses:
+ *      '200':
+ *        description: The venue was successfully created
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $Ref: '#/components/schemas/venues'
+ *      '500':
+ *         description: A server error occured
+ */
+
 router.post("/", async (req, res) => {
   const {
     email,
