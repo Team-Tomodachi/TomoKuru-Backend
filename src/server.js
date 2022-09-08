@@ -4,6 +4,7 @@ const usersRouter = require("../routes/users");
 const venuesRouter = require("../routes/venues");
 const groupsRouter = require("../routes/groups");
 const eventsRouter = require("../routes/events");
+const cors = require("cors");
 
 //SWAGGER setup
 const swaggerUI = require("swagger-ui-express");
@@ -31,6 +32,7 @@ const swaggerSpecs = swaggerJsDoc(swaggerOptions);
 
 const setupExpressServer = () => {
   const app = express();
+  app.use(cors());
   app.use(express.json());
 
   app.use("/api_dev_docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
