@@ -84,6 +84,17 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const edits = req.body;
+  try {
+    await db("venues").where("id", id).delete();
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 /**
  * @swagger
  * /api/venues:
