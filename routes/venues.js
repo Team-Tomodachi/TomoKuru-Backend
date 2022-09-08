@@ -73,6 +73,17 @@ router.get("/prefecture/:prefecture", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  const edits = req.body;
+  try {
+    await db("venues").where("id", id).update(edits);
+    res.status(204).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 /**
  * @swagger
  * /api/venues:
