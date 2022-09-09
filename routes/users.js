@@ -139,7 +139,7 @@ router.patch("/:email", async (req, res) => {
   const edits = req.body;
   try {
     await db("users").where("email", email).update(edits);
-    res.status(204).end();
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(404);
   }
