@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../src/knex.js");
 
 /**
  * @swagger
@@ -28,6 +29,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const venues = await db("venues").select("*").timeout(1500);
+    console.log(`VENUE API CALLED ${venues}`);
     res.send(venues).status(200);
   } catch (err) {
     res.send(err).status(404);
