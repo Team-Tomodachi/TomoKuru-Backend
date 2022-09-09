@@ -144,9 +144,9 @@ router.post("/", async (req, res) => {
     address: address || "",
     venue_email: venue_email || "",
     description: description || "",
-    num_seats: num_seats || "",
+    num_seats: num_seats || 0,
     smoking: smoking || "",
-    outdoor_seating: outdoor_seating || "",
+    outdoor_seating: outdoor_seating || false,
     venue_url: venue_url || "",
     photo_link: photo_link || "",
   };
