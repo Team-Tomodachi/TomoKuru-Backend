@@ -62,5 +62,16 @@ exports.seed = async function (knex) {
       prefecture: "Tokyo",
       title: "Cat",
     },
+    {
+      id: "edf05a86-9d12-405c-8729-0188077f5578",
+      email: "qq1@gmail.com",
+      firebase_id: "dFJRKmYQ3fWFyBRiBCBmVmI7MuZ2",
+      account_type: "vendor",
+      account_active: "active",
+      first_name: "Ashley",
+      city_ward: "Tokyo",
+      prefecture: "Tokyo",
+      title: "Manager of Spikez",
+    },
   ]);
 };
