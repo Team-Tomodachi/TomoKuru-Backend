@@ -76,5 +76,29 @@
  *        photo_link:
  *          type: string
  *          description: the link to the venue photo in the database
+ *    groups:
+ *       type: object
+ *       required:
+ *         - user_id
+ *      properties:
+ *       id:
+ *         type: string
+ *         description: The auto-generated id of the groups
+ *       user_id:
+ *         type: string
+ *         description: ID of the user who created/owns the group (foreign key)
+ *       group_name:
+ *         type: string
+ *         description: Name of the group
+ *       group_description:
+ *         type: string
+ *         description: Description of the group
+ *       private:
+ *         type: boolean
+ *         description: Indicator if a groups is private or public
+ *       member_num:
+ *         type: integer
+ *         description: Total members in the group
+ *
  *
  */
