@@ -121,6 +121,17 @@ router.patch("/:group_id/privacy", async (req, res) => {
   }
 });
 
+router.patch("/:group_id", async (req, res) => {
+  const { group_id } = req.params;
+  const edits = req.body;
+  try {
+    await db("groups").where("id", group_id).update(edits);
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 router.post("/joingroup", async (req, res) => {
   const { group_id, user_id } = req.body;
   const newMember = {
