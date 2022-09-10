@@ -128,11 +128,7 @@ router.post("/", async (req, res) => {
   };
   try {
     await db("users").insert(newUser);
-    const userID = await db("users")
-      .where("email", email)
-      .select("id")
-      .timeout(1500);
-    res.send(userID).status(200);
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
   }
