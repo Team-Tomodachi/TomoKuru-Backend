@@ -29,7 +29,6 @@ const db = require("../src/knex.js");
 router.get("/", async (req, res) => {
   try {
     const venues = await db("venues").select("*").timeout(1500);
-    console.log(`VENUE API CALLED ${venues}`);
     res.send(venues).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -80,7 +79,7 @@ router.patch("/:id", async (req, res) => {
   const edits = req.body;
   try {
     await db("venues").where("id", id).update(edits);
-    res.status(204).end();
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(404);
   }
@@ -152,7 +151,7 @@ router.post("/", async (req, res) => {
   };
   try {
     await db("venues").insert(newVenue);
-    res.status(204).end();
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
   }
