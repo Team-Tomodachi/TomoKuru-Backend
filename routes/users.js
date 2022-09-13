@@ -127,8 +127,18 @@ router.post("/", async (req, res) => {
     title: title || "",
   };
   try {
-    await db("users").insert(newUser);
-    res.status(200).end();
+    const userID = await db("users")
+      .insert(newUser)
+      .returning(
+        "id",
+        "email",
+        "first_name",
+        "account_type",
+        "city_ward",
+        "prefecture",
+        "title"
+      );
+    res.send(userID).status(200);
   } catch (err) {
     res.send(err).status(500);
   }
