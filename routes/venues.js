@@ -139,7 +139,7 @@ router.post("/package/", async (req, res) => {
     venue_id: venue_id,
     package_name: package_name,
     package_per_person_cost: package_per_person_cost,
-    "duration(minutes)": duration,
+    duration: duration,
     maximum_number_of_people: maximum_number_of_people,
     picture_url: picture_url || "",
     other_notes: other_notes || "",
