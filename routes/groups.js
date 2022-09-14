@@ -2,6 +2,15 @@ const express = require("express");
 const router = express.Router();
 const db = require("../src/knex.js");
 
+router.get("/", async (req, res) => {
+  try {
+    const groups = await db("groups").select("*").timout(1500);
+    res.send(groups).status(200);
+  } catch (err) {
+    res.send(err).status(500);
+  }
+});
+
 router.get("/:user_id", async (req, res) => {
   // #swagger.tags = ["Groups"]
   const { user_id } = req.params;
