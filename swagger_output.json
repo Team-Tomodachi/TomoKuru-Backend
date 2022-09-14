@@ -184,9 +184,9 @@
       }
     },
     "/{user_id}": {
-      "get": {
+      "delete": {
         "tags": [
-          "Groups"
+          "Users"
         ],
         "description": "",
         "parameters": [
@@ -246,7 +246,7 @@
         }
       }
     },
-    "/joingroup": {
+    "/{user_id}/{group_id}": {
       "post": {
         "tags": [
           "Groups"
@@ -254,19 +254,16 @@
         "description": "",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "group_id": {
-                  "example": "any"
-                },
-                "user_id": {
-                  "example": "any"
-                }
-              }
-            }
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
