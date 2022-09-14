@@ -27,6 +27,7 @@ const db = require("../src/knex.js");
  *
  */
 router.get("/", async (req, res) => {
+  // #swagger.tags = ["Users"]
   try {
     const users = await db("users").select("*").timeout(1500);
     res.send(users).status(200);
@@ -62,6 +63,7 @@ router.get("/", async (req, res) => {
  *
  */
 router.get("/:email", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { email } = req.params;
   try {
     const user = await db("users")
@@ -76,6 +78,7 @@ router.get("/:email", async (req, res) => {
         "prefecture",
         "title"
       )
+      .first()
       .timeout(1500);
     res.send(user).status(200);
   } catch (err) {
@@ -83,30 +86,8 @@ router.get("/:email", async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /api/users:
- *  post:
- *    summary: Create a new user
- *    tags: [Users]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $Ref: '#/components/schemas/users'
- *    responses:
- *      '200':
- *        description: The User was successfully created
- *        content:
- *          application/json:
- *            schema:
- *              $Ref: '#/components/schemas/users'
- *      '500':
- *         description: A server error occured
- */
-
 router.post("/", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const {
     email,
     first_name,
@@ -145,6 +126,7 @@ router.post("/", async (req, res) => {
 });
 
 router.patch("/:email", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { email } = req.params;
   const edits = req.body;
   try {
@@ -156,6 +138,7 @@ router.patch("/:email", async (req, res) => {
 });
 
 router.patch("/:email/activation", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { email } = req.params;
   try {
     await db("users")
@@ -168,13 +151,3 @@ router.patch("/:email/activation", async (req, res) => {
 });
 
 module.exports = router;
-
-// table.string("id").primary();
-// table.string("email", 32).unique().notNullable().index();
-// table.string("firebase_id", 64).unique();
-// table.string("account_type", 20);
-// table.string("account_active", 20);
-// table.string("first_name", 32);
-// table.string("city_ward", 32);
-// table.string("prefecture", 32);
-// table.string("title", 64);

@@ -4,31 +4,8 @@ const db = require("../src/knex.js");
 
 const contactForMore = "Please contact the venue for further details.";
 
-/**
- * @swagger
- * tags:
- *   name: Venues
- *   description: APIs for venue data
- */
-
-/**
- * @swagger
- * /api/venues:
- *    get:
- *      summary: Returns a list of all of the venues
- *      tags: [Venues]
- *      responses:
- *        '200':
- *          description: The list of venues
- *          content:
- *            application/json:
- *              schema:
- *                type: array
- *                items:
- *                  $Ref: '#/components/schemas/venues'
- *
- */
 router.get("/", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   try {
     const venues = await db("venues").select("*").timeout(1500);
     res.send(venues).status(200);
@@ -38,6 +15,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { id } = req.params;
   try {
     const venues = await db("venues")
@@ -51,6 +29,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/city/:city", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { city } = req.params;
   try {
     const venues = await db("venues")
@@ -64,6 +43,7 @@ router.get("/city/:city", async (req, res) => {
 });
 
 router.get("/prefecture/:prefecture", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { prefecture } = req.params;
   try {
     const venues = await db("venues")
@@ -77,6 +57,7 @@ router.get("/prefecture/:prefecture", async (req, res) => {
 });
 
 router.patch("/:id", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { id } = req.params;
   const edits = req.body;
   try {
@@ -88,6 +69,7 @@ router.patch("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { id } = req.params;
   try {
     await db("venues").where("id", id).delete();
@@ -97,30 +79,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /api/venues:
- *  post:
- *    summary: Create a new venue
- *    tags: [Venues]
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            $Ref: '#/components/schemas/venues'
- *    responses:
- *      '200':
- *        description: The venue was successfully created
- *        content:
- *          application/json:
- *            schema:
- *              $Ref: '#/components/schemas/venues'
- *      '500':
- *         description: A server error occured
- */
-
 router.post("/", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const {
     user_id,
     location_name,
@@ -162,6 +122,7 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/package/", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const {
     venue_id,
     package_name,
@@ -195,6 +156,7 @@ router.post("/package/", async (req, res) => {
 });
 
 router.get("/packages/:venue_id", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { venue_id } = req.params;
   try {
     const packages = await db("packages")
@@ -208,6 +170,7 @@ router.get("/packages/:venue_id", async (req, res) => {
 });
 
 router.delete("/packages/:package_id", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { package_id } = req.params;
   try {
     await db("packages").where("id", package_id).delete();
@@ -218,6 +181,7 @@ router.delete("/packages/:package_id", async (req, res) => {
 });
 
 router.patch("/packages/:package_id", async (req, res) => {
+  // #swagger.tags = ["Venues"]
   const { package_id } = req.params;
   const edits = req.body;
   try {

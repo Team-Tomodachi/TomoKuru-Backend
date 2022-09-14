@@ -8,6 +8,7 @@ const cors = require("cors");
 
 //SWAGGER setup
 const swaggerUI = require("swagger-ui-express");
+const swaggerFile = require("../swagger_output.json");
 const swaggerJsDoc = require("swagger-jsdoc");
 
 const swaggerOptions = {
@@ -35,7 +36,7 @@ const setupExpressServer = () => {
   app.use(cors());
   app.use(express.json());
 
-  app.use("/api_dev_docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
+  app.use("/api_dev_docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
   app.use("/api/users", usersRouter);
   app.use("/api/venues", venuesRouter);

@@ -9,7 +9,8 @@
     "migrate:make": "knex migrate:make",
     "migrate": "knex migrate:latest",
     "seed:make": "knex seed:make",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "autogen": "node swagger.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "knex": "^2.3.0",
     "nanoid": "^4.0.0",
     "pg": "^8.8.0",
+    "swagger-autogen": "^2.21.7",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
   }

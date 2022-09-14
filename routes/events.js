@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../src/knex.js");
 
 router.get("/", async (req, res) => {
+  // #swagger.tags = ["Events"]
   try {
     const events = await db("events").select("*").timeout(1500);
     res.send(events).status(200);
@@ -11,7 +12,9 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Get Events By USER Owner
 router.get("/user/:user_id", async (req, res) => {
+  // #swagger.tags = ["Events"]
   const { user_id } = req.params;
   try {
     const events = await db("events").where("user_id", user_id).select("*");
@@ -21,7 +24,9 @@ router.get("/user/:user_id", async (req, res) => {
   }
 });
 
+//Get Events by Venue
 router.get("/venue/:venue_id", async (req, res) => {
+  // #swagger.tags = ["Events"]
   const { venue_id } = req.params;
   try {
     const events = await db("events").where("venue_id", venue_id).select("*");
@@ -32,6 +37,7 @@ router.get("/venue/:venue_id", async (req, res) => {
 });
 
 router.patch("/:event_id", async (req, res) => {
+  // #swagger.tags = ["Events"]
   const { event_id } = req.params;
   const { edits } = req.body;
   try {
@@ -46,6 +52,7 @@ router.patch("/:event_id", async (req, res) => {
 });
 
 router.delete("/:event_id", async (req, res) => {
+  // #swagger.tags = ["Events"]
   const { event_id } = req.params;
   try {
     await db("events").where("id", event_id).delete();
@@ -56,6 +63,7 @@ router.delete("/:event_id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  // #swagger.tags = ["Events"]
   const {
     user_id,
     venue_id,
