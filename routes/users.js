@@ -96,6 +96,7 @@ router.post("/", async (req, res) => {
     city_ward,
     prefecture,
     title,
+    contact,
   } = req.body;
   const newUser = {
     account_active: "active",
@@ -106,20 +107,23 @@ router.post("/", async (req, res) => {
     city_ward: city_ward || "",
     prefecture: prefecture || "",
     title: title || "",
+    contact: contact || "",
   };
   try {
-    const userID = await db("users")
-      .insert(newUser)
-      .returning(
+    await db("users").insert(newUser);
+    const userDetail = await db("users")
+      .where("email", email)
+      .select(
         "id",
         "email",
         "first_name",
         "account_type",
         "city_ward",
         "prefecture",
-        "title"
+        "title",
+        "contact"
       );
-    res.send(userID).status(200);
+    res.send(userDetail).status(200);
   } catch (err) {
     res.send(err).status(500);
   }
@@ -144,6 +148,17 @@ router.patch("/:email/activation", async (req, res) => {
     await db("users")
       .where("email", email)
       .update({ account_active: "inactive" });
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.delete("/:user_id", async (req, res) => {
+  // #swagger.tags = ["Users"]
+  const { user_id } = req.params;
+  try {
+    await db("users").where("id", user_id).delete();
     res.status(200).end();
   } catch (err) {
     res.send(err).status(404);
