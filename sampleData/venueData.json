@@ -1,0 +1,56 @@
+[
+  {
+    "user_id": "bccaaf5c-779a-4254-94d9-33edc64c93f7",
+    "venueName": "Hubs Shibuya",
+    "venueType": "pub",
+    "venueAddress": "ICHIGO FIESTA SHIBUYA B1F,3-10,UDAGAWA-CHO,SHIBUYA-KU,Tokyo,150-0042",
+    "venueContact": "03-3462-5881",
+    "venueDescription": "British-style Sports Bar popular with local and expats alike.",
+    "venueCapacity": 105
+  },
+  {
+    "user_id": "97e55e28-0599-42d6-95d4-6cfb20827548",
+    "venueName": "TY Harbor",
+    "venueType": "Brew Pub",
+    "venueAddress": "2-1-3 Higashi-Shinagawa, Shinagawa-ku, Tokyo 140-0002",
+    "venueContact": "03-5479-4555",
+    "venueDescription": "Canal-side brew pub with large seating capacity. Can host private parties.",
+    "venueCapacity": 200
+  },
+  {
+    "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
+    "venueName": "Øl Tokyo",
+    "venueType": "bar",
+    "venueAddress": "37-10 Udagawacho, Shibuya, Tokyo",
+    "venueContact": "03 5738 7186",
+    "venueDescription": "Norweigan style bar with over 20 microbrews on tap.",
+    "venueCapacity": 58
+  },
+  {
+    "user_id": "29f41b8f-1f6f-4e32-9623-d48acd5578ed",
+    "venueName": "Quays Pacific Grill",
+    "venueType": "restaurant",
+    "venueAddress": "Yokohama Hammer Head 1F-2F, 2-14-1 Shinko, Naka, Yokohama",
+    "venueContact": "045-900-0310",
+    "venueDescription": "This scenic restaurant at Yokohama Hammerhead occupies a prime spot along the waterfront, complete with a spacious terrace that boasts a spectacular view of the city.",
+    "venueCapacity": 197
+  },
+  {
+    "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
+    "venueName": "Rio Brewing & Co Bistro and Garden",
+    "venueType": "Bistro",
+    "venueAddress": "Tokyo Midtown Plaza 1F, 9-7-2 Akasaka, Minato, Tokyo",
+    "venueContact": "03-3403-0808",
+    "venueDescription": "This bistro in Roppongis Tokyo Midtown is perfect for relaxing outdoors, especially if youre with a group. ",
+    "venueCapacity": 192
+  },
+  {
+    "user_id": "0873a1d2-91cf-464b-b194-29d681bebf5b",
+    "venueName": "Cé La Vi",
+    "venueType": "cafe-bar",
+    "venueAddress": "Shibuya Fukuras, Tokyu Plaza Shibuya, 17-18F 1-2-3 Shibuya, Dogenzaka, Shibuya, Tokyo",
+    "venueContact": "0800-111-3065",
+    "venueDescription": "This multi-hyphenate venue covers two floors on the rooftop of Shibuya Fukuras, featuring a restaurant, rooftop bar and club.",
+    "venueCapacity": 156
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "95ae1b26-ce9a-4b3f-811f-010b350fc69e",
+    "groupName": "Canada Soccer FanZ",
+    "groupDescription": "For all true Canuck Fans of Canadian soccer. We often gather at the Hubs to watch our team play.",
+    "isPrivate": "public",
+    "groupMemberCount": 69,
+    "groupPhoto": "../DummyData/DummyGroupPhotos/canada-soccer-fans.jpeg"
+  },
+  {
+    "id": "ac0e3ccc-2384-4c58-b99c-bc26ada6cdde",
+    "groupName": "Ping-Pong Players International",
+    "groupDescription": "A group for those who love ping-pong. All levels welcome. We usually play on Sundays in Tamachi",
+    "isPrivate": "public",
+    "groupMemberCount": 45,
+    "groupPhoto": "require('../DummyData/DummyGroupPhotos/ping-pong-players-international.jpg')"
+  },
+  {
+    "id": "416b9fa1-93b8-430a-8d82-a36a4af2d714",
+    "groupName": "Basket Weavers Guild",
+    "groupDescription": "For those who love the most exciting hobby in world, come join us!",
+    "isPrivate": "public",
+    "groupMemberCount": 9,
+    "groupPhoto": "require('../DummyData/DummyGroupPhotos/basket-weavers-guild.jpeg')"
+  },
+  {
+    "id": "34d81860-99c4-443c-baf3-6957d2b8225e",
+    "groupName": "Chess Masters Society",
+    "groupDescription": "Only advanced players with an IQ over 150 are welcome. Must beat a member to join.",
+    "isPrivate": "private",
+    "groupMemberCount": 24,
+    "groupPhoto": "require('../DummyData/DummyGroupPhotos/chess-masters-society.jpeg')"
+  },
+  {
+    "id": "1ba97988-89cd-4af6-b2a5-9305cd91640e",
+    "groupName": "Coding Nerds Unite!",
+    "groupDescription": "Love JavaScript? Think React is the bet thing on earth? Join us for our monthly hackathon and party!",
+    "isPrivate": "public",
+    "groupMemberCount": 1010,
+    "groupPhoto": "require('../DummyData/DummyGroupPhotos/coding-nerds-unite!.jpeg')"
+  },
+  {
+    "id": "7f6b291e-1e57-41f1-bef6-c1301a550628",
+    "groupName": "Sunday Futsal in Kinshicho",
+    "groupDescription": "Join our weekly futsal match in Kishicho. All nationalities welcome, but you should have moderate to advanced skills and fitness level.",
+    "isPrivate": "public",
+    "groupMemberCount": 134,
+    "groupPhoto": "require('../DummyData/DummyGroupPhotos/sunday-futsal-in-kinshicho.jpeg')"
+  }
+]
