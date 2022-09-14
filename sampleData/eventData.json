@@ -1,8 +1,9 @@
 [
   {
     "id": "a5700c92-3215-4d9d-b667-d6de0fb334ca",
-    "user_id": "bccaaf5c-779a-4254-94d9-33edc64c93f7",
-    "venue_id": "627702bb-9507-4cee-848c-dd336f88adfd",
+    "user_id": "000UUIDPLZ00",
+    "venue_id": "000UUIDPLZ00",
+    "group_id": "000UUIDPLZ00",
     "event_name": "Canada vs. Belgium",
     "group-name": "Canada Soccer FanZ",
     "event-location": "Hubs Shibuya",
@@ -15,8 +16,9 @@
   },
   {
     "id": "b1d20b07-4561-4148-9773-9f7de2d09c3c",
-    "venue_id": "0de424ad-cf69-44e3-a265-b7c6580ec120",
-    "user_id": "edf05a86-9d12-405c-8729-0188077f5578",
+    "user_id": "000UUIDPLZ00",
+    "venue_id": "000UUIDPLZ00",
+    "group_id": "000UUIDPLZ00",
     "event_name": "Post Ping-Pong Dinner",
     "group-name": "Ping-Pong Players International",
     "event-location": "TY Harbor",
@@ -26,61 +28,5 @@
     "eventEndTime": "19:00",
     "eventCapacity": 14,
     "eventCreator": "Cindy Li"
-  },
-  {
-    "id": "78529e33-7a94-47a9-8976-bb2ff1d1a958",
-    "user_id": "97e55e28-0599-42d6-95d4-6cfb20827548",
-    "venue_id": "4e59205e-ea96-4a0d-8ac7-d60d96e262f3",
-    "event_name": "Best basket-weaving practices discussion",
-    "group-name": "Basket Weavers Guild",
-    "event-location": "Øl Tokyo",
-    "eventDescription": "Join us for our monthly discussion on how to weave the perfect basket and enjoy a taste of Scandenavia!",
-    "eventdate": "November 8th, 2022",
-    "eventStartTime": "14:00",
-    "eventEndTime": "16:00",
-    "eventCapacity": 12,
-    "eventCreator": "Julie Weaver"
-  },
-  {
-    "id": "a794b320-e379-4df1-97c6-2a5a99639086",
-    "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
-    "venue_id": "dccc0add-bf10-415d-8904-af6f207fc77f",
-    "event_name": "Champions Celebration Dinner",
-    "group-name": "Chess Masters Society",
-    "event-location": "Quays Pacific Grill",
-    "eventDescription": "Join us we toast our annual tournamets champion!",
-    "eventdate": "November 28th, 2022",
-    "eventStartTime": "16:00",
-    "eventEndTime": "18:00",
-    "eventCapacity": 12,
-    "eventCreator": "Garry Kasparov"
-  },
-  {
-    "id": "e0b2c718-36ea-47e9-a2f0-2635e5622993",
-    "user_id": "0873a1d2-91cf-464b-b194-29d681bebf5b",
-    "venue_id": "ef1d25ef-ad3c-4029-ba3e-3914edf9d1f5",
-    "event_name": "Monthly Social Nomikai",
-    "group-name": "Coding Nerds Unite!",
-    "event-location": "Rio Brewing & Co Bistro and Garden",
-    "eventDescription": "Join us for our monthly nomikai as we discuss new tech and welcome new members",
-    "eventdate": "November 6th, 2022",
-    "eventStartTime": "20:00",
-    "eventEndTime": "22:00",
-    "eventCapacity": 15,
-    "eventCreator": "Evan You"
-  },
-  {
-    "id": "f0dcbc49-593a-40e7-a21b-9f0605bc040b",
-    "user_id": " 29f41b8f-1f6f-4e32-9623-d48acd5578ed",
-    "venue_id": "8bd36f09-1fc0-4a33-8997-139d1a7cfd0c",
-    "event_name": "End of Year Awards",
-    "group-name": "Sunday Futsal in Kinshicho",
-    "event-location": "Cé La Vi",
-    "eventDescription": "Join us as we eat, drink, and be merry",
-    "eventdate": "December 20th, 2022",
-    "eventStartTime": "19:00",
-    "eventEndTime": "23:00",
-    "eventCapacity": 50,
-    "eventCreator": "Hidetoshi Nakata"
   }
 ]
