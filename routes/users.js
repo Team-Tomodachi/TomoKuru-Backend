@@ -2,30 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../src/knex.js");
 
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: APIs for user data
- */
-
-/**
- * @swagger
- * /api/users:
- *    get:
- *      summary: Returns a list of all of the users
- *      tags: [Users]
- *      responses:
- *        '200':
- *          description: The list of users
- *          content:
- *            application/json:
- *              schema:
- *                type: array
- *                items:
- *                  $Ref: '#/components/schemas/users'
- *
- */
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Users"]
   try {
@@ -36,32 +12,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * @swagger
- * /api/users/:
- *  get:
- *    summary: Returns a user by email
- *    tags: [Users]
- *    parameters:
- *      - in: path
- *        name: email
- *        schema:
- *          type: string
- *        required: true
- *        description: The user email
- *    responses:
- *      '200':
- *        description: Returns a single user
- *        content:
- *          application/json:
- *            schema:
- *             type: array
- *             items:
- *              $Ref: '#/components/schemas/users'
- *      '404':
- *       description: User not found
- *
- */
 router.get("/:email", async (req, res) => {
   // #swagger.tags = ["Users"]
   const { email } = req.params;

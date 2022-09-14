@@ -5,8 +5,8 @@ const db = require("../src/knex.js");
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
   try {
-    const groups = await db("groups").select("*").timout(1500);
-    res.send(groups).status(200);
+    const groupsDetails = await db("groups").select("*").timout(1500);
+    res.send(groupsDetails).status(200);
   } catch (err) {
     res.send(err).status(500);
   }

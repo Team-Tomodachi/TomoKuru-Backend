@@ -294,6 +294,48 @@
         }
       }
     },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/groups/{group_id}": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/{email}": {
       "get": {
         "tags": [

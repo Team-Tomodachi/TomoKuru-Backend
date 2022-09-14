@@ -1,9 +1,9 @@
 [
   {
     "id": "a5700c92-3215-4d9d-b667-d6de0fb334ca",
-    "user_id": "000UUIDPLZ00",
-    "venue_id": "000UUIDPLZ00",
-    "group_id": "000UUIDPLZ00",
+    "user_id": "97e55e28-0599-42d6-95d4-6cfb20827548",
+    "venue_id": "7f1ed93e-3990-46d4-b855-1202fc438647",
+    "group_id": "95ae1b26-ce9a-4b3f-811f-010b350fc69e",
     "event_name": "Canada vs. Belgium",
     "group-name": "Canada Soccer FanZ",
     "event-location": "Hubs Shibuya",
@@ -12,13 +12,13 @@
     "eventStartTime": "19:00",
     "eventEndTime": "21:00",
     "eventCapacity": 20,
-    "eventCreator": "John Candy"
+    "eventCreator": "Mickey"
   },
   {
     "id": "b1d20b07-4561-4148-9773-9f7de2d09c3c",
-    "user_id": "000UUIDPLZ00",
-    "venue_id": "000UUIDPLZ00",
-    "group_id": "000UUIDPLZ00",
+    "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
+    "venue_id": "91e1ed6c-06d3-4774-aab8-b3c0daf50e42",
+    "group_id": "ac0e3ccc-2384-4c58-b99c-bc26ada6cdde",
     "event_name": "Post Ping-Pong Dinner",
     "group-name": "Ping-Pong Players International",
     "event-location": "TY Harbor",
@@ -27,6 +27,6 @@
     "eventStartTime": "17:00",
     "eventEndTime": "19:00",
     "eventCapacity": 14,
-    "eventCreator": "Cindy Li"
+    "eventCreator": "Jay"
   }
 ]
