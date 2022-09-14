@@ -4,6 +4,7 @@ const usersRouter = require("../routes/users");
 const venuesRouter = require("../routes/venues");
 const groupsRouter = require("../routes/groups");
 const eventsRouter = require("../routes/events");
+const tagsRouter = require("../routes/tags");
 const cors = require("cors");
 
 //SWAGGER setup
@@ -42,6 +43,7 @@ const setupExpressServer = () => {
   app.use("/api/venues", venuesRouter);
   app.use("/api/groups", groupsRouter);
   app.use("/api/events", eventsRouter);
+  app.use("api/tags", tagsRouter);
 
   //remove test end point after api development is complete
   app.get("/api/test", (req, res) => {
