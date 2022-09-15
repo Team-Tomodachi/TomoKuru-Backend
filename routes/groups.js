@@ -93,7 +93,7 @@ router.get("/members/:group_id", async (req, res) => {
   }
 });
 
-router.get("/mygroups/:user_id", async (req, res) => {
+router.get("/usergroups/:user_id", async (req, res) => {
   // #swagger.tags = ["Groups"]
   const { user_id } = req.params;
   try {
