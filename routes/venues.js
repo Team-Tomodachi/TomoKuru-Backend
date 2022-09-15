@@ -95,7 +95,7 @@ router.post("/", async (req, res) => {
     outdoor_seating,
     venue_url,
     photo_link,
-    type,
+    venue_type,
   } = req.body;
   const newVenue = {
     user_id: user_id,
@@ -111,7 +111,7 @@ router.post("/", async (req, res) => {
     outdoor_seating: outdoor_seating || false,
     venue_url: venue_url || "",
     photo_link: photo_link || "",
-    //type: type || "",
+    venue_type: venue_type || "",
   };
   try {
     await db("venues").insert(newVenue);
