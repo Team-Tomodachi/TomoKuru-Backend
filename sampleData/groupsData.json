@@ -1,7 +1,7 @@
 [
   {
     "id": "95ae1b26-ce9a-4b3f-811f-010b350fc69e",
-    "user_id": "USER_ID_PLZ",
+    "user_id": "0873a1d2-91cf-464b-b194-29d681bebf5b",
     "groupName": "Canada Soccer FanZ",
     "groupDescription": "For all true Canuck Fans of Canadian soccer. We often gather at the Hubs to watch our team play.",
     "isPrivate": "public",
@@ -10,7 +10,7 @@
   },
   {
     "id": "ac0e3ccc-2384-4c58-b99c-bc26ada6cdde",
-    "user_id": "USER_ID_PLZ",
+    "user_id": "bccaaf5c-779a-4254-94d9-33edc64c93f7",
     "groupName": "Ping-Pong Players International",
     "groupDescription": "A group for those who love ping-pong. All levels welcome. We usually play on Sundays in Tamachi",
     "isPrivate": "public",
@@ -19,7 +19,7 @@
   },
   {
     "id": "416b9fa1-93b8-430a-8d82-a36a4af2d714",
-    "user_id": "USER_ID_PLZ",
+    "user_id": "9aa0cd95-944d-43ea-9541-30f3be4a1d56",
     "groupName": "Basket Weavers Guild",
     "groupDescription": "For those who love the most exciting hobby in world, come join us!",
     "isPrivate": "public",
@@ -28,7 +28,7 @@
   },
   {
     "id": "34d81860-99c4-443c-baf3-6957d2b8225e",
-    "user_id": "USER_ID_PLZ",
+    "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
     "groupName": "Chess Masters Society",
     "groupDescription": "Only advanced players with an IQ over 150 are welcome. Must beat a member to join.",
     "isPrivate": "private",
@@ -37,7 +37,7 @@
   },
   {
     "id": "1ba97988-89cd-4af6-b2a5-9305cd91640e",
-    "user_id": "USER_ID_PLZ",
+    "user_id": "0873a1d2-91cf-464b-b194-29d681bebf5b",
     "groupName": "Coding Nerds Unite!",
     "groupDescription": "Love JavaScript? Think React is the bet thing on earth? Join us for our monthly hackathon and party!",
     "isPrivate": "public",
@@ -46,7 +46,7 @@
   },
   {
     "id": "7f6b291e-1e57-41f1-bef6-c1301a550628",
-    "user_id": "USER_ID_PLZ",
+    "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
     "groupName": "Sunday Futsal in Kinshicho",
     "groupDescription": "Join our weekly futsal match in Kishicho. All nationalities welcome, but you should have moderate to advanced skills and fitness level.",
     "isPrivate": "public",
