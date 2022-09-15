@@ -12,6 +12,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Get Events without Venues
+router.get("/noVenues/", async (req, res) => {
+  // #swagger.tags = ["Events"]
+  try {
+    const events = await db("events").where("venue_id", "").select("*");
+    res.send(events).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 //Get Events By USER Owner
 router.get("/user/:user_id", async (req, res) => {
   // #swagger.tags = ["Events"]
@@ -85,8 +96,8 @@ router.post("/", async (req, res) => {
     capacity: capacity || 0,
   };
   try {
-    const event = await db("events").insert(newEvent).returning("*");
-    res.send(event).status(200);
+    const event = await db("events").insert(newEvent);
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
   }
