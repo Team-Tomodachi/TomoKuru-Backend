@@ -36,6 +36,56 @@ router.get("/:email", async (req, res) => {
   }
 });
 
+router.get("/login/:email", async (req, res) => {
+  // #swagger.tags = ["Users"]
+  const { email } = req.params;
+  let venues;
+  try {
+    const user = await db("users")
+      .where("email", email)
+      .select(
+        "id",
+        "email",
+        "first_name",
+        "account_type",
+        "account_active",
+        "city_ward",
+        "prefecture",
+        "title"
+      )
+      .first()
+      .timeout(1500);
+    if (user.account_active !== "active") {
+      res.send("This user account has been deactivated").status(400);
+    }
+    const groups = await db("group_members")
+      .where("user_id", user.id)
+      .select("*")
+      .timeout(1500);
+
+    if (user.account_type === "vendor") {
+      venues = await db("venues")
+        .where("user_id", user.id)
+        .select("*")
+        .timeout(1500);
+    }
+    const results = {
+      user_id: user.id,
+      email: user.email,
+      first_name: user.first_name,
+      account_type: user.account_type,
+      account_active: user.account_active,
+      city_ward: user.city_ward,
+      prefecture: user.prefecture,
+      groups: groups,
+      venues: venues ? venues : "This is not a vendor account",
+    };
+    res.send(results).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 router.post("/", async (req, res) => {
   // #swagger.tags = ["Users"]
   const {
