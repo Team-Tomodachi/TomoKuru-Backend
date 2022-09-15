@@ -65,7 +65,8 @@ router.post("/users/:user_id", async (req, res) => {
   try {
     const tagExists = await db("tags")
       .where("tag", tag)
-      .select("id")
+      .select("*")
+      .first()
       .timeout(1500);
     if (tagExists) {
       const tagInsert = {
@@ -89,7 +90,8 @@ router.post("/groups/:group_id", async (req, res) => {
   try {
     const tagExists = await db("tags")
       .where("tag", tag)
-      .select("id")
+      .select("*")
+      .first()
       .timeout(1500);
     if (tagExists) {
       const tagInsert = {
