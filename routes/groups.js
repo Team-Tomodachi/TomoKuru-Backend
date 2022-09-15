@@ -52,7 +52,7 @@ router.patch('/:group_id/privacy', async (req, res) => {
     // #swagger.tags = ["Groups"]
     const { group_id } = req.params;
     try {
-        await db('groups').where('user_id', group_id).update({ private: true });
+        await db('groups').where('id', group_id).update({ private: true });
         res.status(200).end();
     } catch (err) {
         res.send(err).status(404);
