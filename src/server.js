@@ -43,7 +43,7 @@ const setupExpressServer = () => {
   app.use("/api/venues", venuesRouter);
   app.use("/api/groups", groupsRouter);
   app.use("/api/events", eventsRouter);
-  app.use("api/tags", tagsRouter);
+  app.use("/api/tags", tagsRouter);
 
   //remove test end point after api development is complete
   app.get("/api/test", (req, res) => {
