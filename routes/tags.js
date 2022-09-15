@@ -5,7 +5,7 @@ const db = require("../src/knex.js");
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Tags"]
   try {
-    const tags = await db("tags").select("*").timout(1500);
+    const tags = await db("tags").select("*").timeout(1500);
     res.send(tags).status(200);
   } catch (err) {
     res.send(err).status(500);
@@ -40,6 +40,7 @@ router.get("/groups/:group_id", async (req, res) => {
   }
 });
 
+//Add new tags  to tag table
 router.post("/", async (req, res) => {
   // #swagger.tags = ["Tags"]
   const body = req.body;
@@ -54,6 +55,29 @@ router.post("/", async (req, res) => {
     res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
+  }
+});
+
+router.post("/users/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  const { tag } = req.body;
+  try {
+    const tagExists = await db("tags")
+      .where("tag", tag)
+      .select("id")
+      .timeout(1500);
+    if (tagExists) {
+      const tagInsert = {
+        user_id: user_id,
+        tag_id: tagExists.id,
+      };
+      await db("user_tags").insert(tagInsert);
+      res.status(200).end();
+    } else {
+      res.send("Tag does not exist, please create new tag").status(404);
+    }
+  } catch (err) {
+    res.send(err).status(404);
   }
 });
 
