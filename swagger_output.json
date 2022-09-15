@@ -1,21 +1,17 @@
 {
-  "swagger": "2.0",
+  "swagger": "3.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
+    "title": "TOMOKURU API",
     "description": ""
   },
-  "host": "localhost:3000",
+  "host": "http://tomokuru.i-re.io/",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -25,9 +21,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -91,9 +85,7 @@
     },
     "/user/{user_id}": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -112,9 +104,7 @@
     },
     "/venue/{venue_id}": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -133,9 +123,7 @@
     },
     "/{event_id}": {
       "patch": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -164,9 +152,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -185,9 +171,7 @@
     },
     "/{user_id}": {
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -206,9 +190,7 @@
     },
     "/{group_id}/privacy": {
       "patch": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -227,9 +209,7 @@
     },
     "/{group_id}": {
       "patch": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -248,9 +228,7 @@
     },
     "/{group_id}/{user_id}": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -275,9 +253,7 @@
     },
     "/members/{group_id}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -296,9 +272,7 @@
     },
     "/usergroups/{user_id}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -317,9 +291,7 @@
     },
     "/users/{user_id}": {
       "get": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "description": "",
         "parameters": [
           {
@@ -338,9 +310,7 @@
     },
     "/groups/{group_id}": {
       "get": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "description": "",
         "parameters": [
           {
@@ -359,9 +329,7 @@
     },
     "/{email}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -378,9 +346,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -399,9 +365,7 @@
     },
     "/{email}/activation": {
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -420,9 +384,7 @@
     },
     "/{id}": {
       "get": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -439,9 +401,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -458,9 +418,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -479,9 +437,7 @@
     },
     "/city/{city}": {
       "get": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -500,9 +456,7 @@
     },
     "/prefecture/{prefecture}": {
       "get": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -521,9 +475,7 @@
     },
     "/package/": {
       "post": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -575,9 +527,7 @@
     },
     "/packages/{venue_id}": {
       "get": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -596,9 +546,7 @@
     },
     "/packages/{package_id}": {
       "delete": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
@@ -615,9 +563,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Venues"
-        ],
+        "tags": ["Venues"],
         "description": "",
         "parameters": [
           {
