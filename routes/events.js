@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../src/knex.js");
 
+const nullVenueID = "298e1689-c6c9-4c22-adad-97fce8604d6f";
+
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Events"]
   try {
@@ -16,7 +18,9 @@ router.get("/", async (req, res) => {
 router.get("/noVenues/", async (req, res) => {
   // #swagger.tags = ["Events"]
   try {
-    const events = await db("events").where("venue_id", "").select("*");
+    const events = await db("events")
+      .where("venue_id", nullVenueID)
+      .select("*");
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -87,7 +91,7 @@ router.post("/", async (req, res) => {
   } = req.body;
   const newEvent = {
     user_id: user_id,
-    venue_id: venue_id,
+    venue_id: venue_id || nullVenueID,
     name: name,
     description: description,
     date: date,
