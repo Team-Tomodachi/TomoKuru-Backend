@@ -246,7 +246,7 @@
         }
       }
     },
-    "/{user_id}/{group_id}": {
+    "/{group_id}/{user_id}": {
       "post": {
         "tags": [
           "Groups"
@@ -254,13 +254,13 @@
         "description": "",
         "parameters": [
           {
-            "name": "user_id",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "group_id",
+            "name": "user_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -282,6 +282,27 @@
         "parameters": [
           {
             "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/usergroups/{user_id}": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
             "in": "path",
             "required": true,
             "type": "string"

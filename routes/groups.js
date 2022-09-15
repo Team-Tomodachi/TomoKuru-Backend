@@ -106,6 +106,4 @@ router.get("/usergroups/:user_id", async (req, res) => {
   }
 });
 
-// Get all the groups that user joins
-
 module.exports = router;
