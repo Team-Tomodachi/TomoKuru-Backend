@@ -65,8 +65,8 @@ router.patch("/:group_id", async (req, res) => {
   }
 });
 
-router.post("/:group_id/:user_id", async (req, res) => {
-  // #swagger.tags = ["Groups"]
+router.post("/members/:group_id/:user_id", async (req, res) => {
+  // #swagger.tags = ["Groups_Members"]
   const { group_id, user_id } = req.params;
   const newMember = {
     group_id: group_id,
@@ -81,13 +81,29 @@ router.post("/:group_id/:user_id", async (req, res) => {
 });
 
 router.get("/members/:group_id", async (req, res) => {
-  // #swagger.tags = ["Groups"]
+  // #swagger.tags = ["Groups_Members"]
   const { group_id } = req.params;
   try {
     const members = await db("group_members")
       .where("group_id", group_id)
       .select("*");
     res.send(members).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.delete("/members/:group_id/:member_id", async (req, res) => {
+  // #swagger.tags = ["Groups_Members"]
+  const { group_id, member_id } = req.params;
+  const member = {
+    group_id: group_id,
+    user_id: member_id,
+  };
+
+  try {
+    await db("group_members").where(member).delete();
+    res.status(200).end();
   } catch (err) {
     res.send(err).status(404);
   }
