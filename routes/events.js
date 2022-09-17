@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
 //Get Events without Venues
 router.get("/noVenues/", async (req, res) => {
   // #swagger.tags = ["Events"]
+
   try {
     const events = await db("events")
       .where("venue_id", nullVenueID)
@@ -31,6 +32,7 @@ router.get("/noVenues/", async (req, res) => {
 router.get("/user/:user_id", async (req, res) => {
   // #swagger.tags = ["Events"]
   const { user_id } = req.params;
+
   try {
     const events = await db("events").where("user_id", user_id).select("*");
     res.send(events).status(200);
@@ -43,6 +45,7 @@ router.get("/user/:user_id", async (req, res) => {
 router.get("/venue/:venue_id", async (req, res) => {
   // #swagger.tags = ["Events"]
   const { venue_id } = req.params;
+
   try {
     const events = await db("events").where("venue_id", venue_id).select("*");
     res.send(events).status(200);
@@ -55,6 +58,7 @@ router.patch("/:event_id", async (req, res) => {
   // #swagger.tags = ["Events"]
   const { event_id } = req.params;
   const { edits } = req.body;
+
   try {
     const events = await db("events")
       .where("id", event_id)
@@ -69,6 +73,7 @@ router.patch("/:event_id", async (req, res) => {
 router.delete("/:event_id", async (req, res) => {
   // #swagger.tags = ["Events"]
   const { event_id } = req.params;
+
   try {
     await db("events").where("id", event_id).delete();
     res.status(200).end();
@@ -99,11 +104,60 @@ router.post("/", async (req, res) => {
     end_time: end_time || "",
     capacity: capacity || 0,
   };
+
   try {
-    const event = await db("events").insert(newEvent);
+    await db("events").insert(newEvent);
     res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
+  }
+});
+
+//API Related to Event attendees
+router.get("/attendees/:event_id", async (req, res) => {
+  // #swagger.tags = ["Events_Attendees"]
+  const { event_id } = req.params;
+
+  try {
+    const attendeeList = await db("event_attendees")
+      .where("event_id", event_id)
+      .select("user_id")
+      .timeout(1500);
+    res.send(attendeeList).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.post("/attendees/:event_id/:attendee_id", async (req, res) => {
+  // #swagger.tags = ["Events_Attendees"]
+  const { event_id, attendee_id } = req.params;
+  const newAttendee = {
+    event_id: event_id,
+    user_id: attendee_id,
+  };
+
+  try {
+    await db("event_attendees").insert(newAttendee);
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.delete("/attendees/:event_id/:attendee_id", async (req, res) => {
+  // #swagger.tags = ["Events_Attendees"]
+  const { event_id, attendee_id } = req.params;
+  const attendee = {
+    event_id: event_id,
+    user_id: attendee_id,
+  };
+
+  try {
+    await db("event_attendees").where(attendee).delete();
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
   }
 });
 
