@@ -57,13 +57,13 @@ router.get("/venue/:venue_id", async (req, res) => {
 router.patch("/:event_id", async (req, res) => {
   // #swagger.tags = ["Events"]
   const { event_id } = req.params;
-  const { edits } = req.body;
-
+  const edits = req.body;
   try {
+    await db("events").where("id", event_id).update(edits);
     const events = await db("events")
-      .where("id", event_id)
-      .update(edits)
-      .returning("*");
+      .where("id, event_id")
+      .select("*")
+      .timeout(1500);
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
