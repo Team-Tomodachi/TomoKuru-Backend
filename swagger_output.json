@@ -2,14 +2,14 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "TOMOKURU API",
+    "title": "TOMOKURU",
     "description": ""
   },
-  "host": "http://tomokuru.i-re.io/",
-  "basePath": "/",
+  "host": "tomokuru.i-re.io/",
+  "basePath": "api/",
   "schemes": ["http"],
   "paths": {
-    "/": {
+    "/venues": {
       "get": {
         "tags": ["Venues"],
         "description": "",
@@ -69,7 +69,7 @@
                 "photo_link": {
                   "example": "any"
                 },
-                "type": {
+                "venue_type": {
                   "example": "any"
                 }
               }
@@ -83,7 +83,19 @@
         }
       }
     },
-    "/user/{user_id}": {
+    "/events/noVenues/": {
+      "get": {
+        "tags": ["Events"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/events/user/{user_id}": {
       "get": {
         "tags": ["Events"],
         "description": "",
@@ -102,7 +114,7 @@
         }
       }
     },
-    "/venue/{venue_id}": {
+    "/events/venue/{venue_id}": {
       "get": {
         "tags": ["Events"],
         "description": "",
@@ -121,7 +133,7 @@
         }
       }
     },
-    "/{event_id}": {
+    "/events/{event_id}": {
       "patch": {
         "tags": ["Events"],
         "description": "",
@@ -169,7 +181,74 @@
         }
       }
     },
-    "/{user_id}": {
+    "/events/attendees/{event_id}": {
+      "get": {
+        "tags": ["Events_Attendees"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/events/attendees/{event_id}/{attendee_id}": {
+      "post": {
+        "tags": ["Events_Attendees"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attendee_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Events_Attendees"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "attendee_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
       "delete": {
         "tags": ["Users"],
         "description": "",
@@ -188,7 +267,7 @@
         }
       }
     },
-    "/{group_id}/privacy": {
+    "/groups/{group_id}/privacy": {
       "patch": {
         "tags": ["Groups"],
         "description": "",
@@ -207,7 +286,7 @@
         }
       }
     },
-    "/{group_id}": {
+    "/groups/{group_id}": {
       "patch": {
         "tags": ["Groups"],
         "description": "",
@@ -226,9 +305,9 @@
         }
       }
     },
-    "/{group_id}/{user_id}": {
+    "/groups/members/{group_id}/{user_id}": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Groups_Members"],
         "description": "",
         "parameters": [
           {
@@ -251,9 +330,9 @@
         }
       }
     },
-    "/members/{group_id}": {
+    "/groups/members/{group_id}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Groups_Members"],
         "description": "",
         "parameters": [
           {
@@ -270,7 +349,32 @@
         }
       }
     },
-    "/usergroups/{user_id}": {
+    "/groups/members/{group_id}/{member_id}": {
+      "delete": {
+        "tags": ["Groups_Members"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/groups/usergroups/{user_id}": {
       "get": {
         "tags": ["Groups"],
         "description": "",
@@ -289,7 +393,7 @@
         }
       }
     },
-    "/users/{user_id}": {
+    "/tags/users/{user_id}": {
       "get": {
         "tags": ["Tags"],
         "description": "",
@@ -306,9 +410,38 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": ["Tags"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
-    "/groups/{group_id}": {
+    "/tags/groups/{group_id}": {
       "get": {
         "tags": ["Tags"],
         "description": "",
@@ -325,9 +458,38 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": ["Tags"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
-    "/{email}": {
+    "/users/{email}": {
       "get": {
         "tags": ["Users"],
         "description": "",
@@ -363,7 +525,45 @@
         }
       }
     },
-    "/{email}/activation": {
+    "/users/userlogin/{email}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/vendorlogin/{email}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{email}/activation": {
       "patch": {
         "tags": ["Users"],
         "description": "",
@@ -382,7 +582,7 @@
         }
       }
     },
-    "/{id}": {
+    "/venues/{id}": {
       "get": {
         "tags": ["Venues"],
         "description": "",
@@ -435,7 +635,7 @@
         }
       }
     },
-    "/city/{city}": {
+    "/venues/city/{city}": {
       "get": {
         "tags": ["Venues"],
         "description": "",
@@ -454,7 +654,7 @@
         }
       }
     },
-    "/prefecture/{prefecture}": {
+    "/venues/prefecture/{prefecture}": {
       "get": {
         "tags": ["Venues"],
         "description": "",
@@ -473,7 +673,7 @@
         }
       }
     },
-    "/package/": {
+    "/venues/package/": {
       "post": {
         "tags": ["Venues"],
         "description": "",
@@ -525,7 +725,7 @@
         }
       }
     },
-    "/packages/{venue_id}": {
+    "/venues/packages/{venue_id}": {
       "get": {
         "tags": ["Venues"],
         "description": "",
@@ -544,7 +744,7 @@
         }
       }
     },
-    "/packages/{package_id}": {
+    "/venues/packages/{package_id}": {
       "delete": {
         "tags": ["Venues"],
         "description": "",
