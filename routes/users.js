@@ -36,10 +36,9 @@ router.get("/:email", async (req, res) => {
   }
 });
 
-router.get("/login/:email", async (req, res) => {
+router.get("/userlogin/:email", async (req, res) => {
   // #swagger.tags = ["Users"]
   const { email } = req.params;
-  let venues;
   try {
     const user = await db("users")
       .where("email", email)
@@ -63,7 +62,46 @@ router.get("/login/:email", async (req, res) => {
       .select("*")
       .timeout(1500);
 
-    if (user.account_type === "vendor") {
+    const results = {
+      user_id: user.id,
+      email: user.email,
+      first_name: user.first_name,
+      account_type: user.account_type,
+      account_active: user.account_active,
+      city_ward: user.city_ward,
+      prefecture: user.prefecture,
+      groups: groups,
+    };
+    res.send(results).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/vendorlogin/:email", async (req, res) => {
+  // #swagger.tags = ["Users"]
+  const { email } = req.params;
+  let venues;
+  try {
+    const user = await db("users")
+      .where("email", email)
+      .select(
+        "id",
+        "email",
+        "first_name",
+        "account_type",
+        "account_active",
+        "city_ward",
+        "prefecture",
+        "title"
+      )
+      .first()
+      .timeout(1500);
+    if (user.account_active.toLowerCase() !== "active") {
+      res.send("This user account has been deactivated").status(400);
+    }
+
+    if (user.account_type.toLowerCase() === "vendor") {
       venues = await db("venues")
         .where("user_id", user.id)
         .select("*")
@@ -77,8 +115,7 @@ router.get("/login/:email", async (req, res) => {
       account_active: user.account_active,
       city_ward: user.city_ward,
       prefecture: user.prefecture,
-      groups: groups,
-      venues: venues ? venues : "This is not a vendor account",
+      venues: venues ? venues : "Currently, you do not have any venues",
     };
     res.send(results).status(200);
   } catch (err) {
