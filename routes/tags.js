@@ -17,7 +17,7 @@ router.get("/users/:user_id", async (req, res) => {
   const { user_id } = req.params;
   try {
     const userTags = await db("user_tags")
-      .join("tags", "tags.id", "user_tags.tag_id")
+      .join("tags", "tags.id", "=", "user_tags.tag_id")
       .where("user_tags.user_id", user_id)
       .select("tags.tag");
     res.send(userTags).status(200);
@@ -31,7 +31,7 @@ router.get("/groups/:group_id", async (req, res) => {
   const { group_id } = req.params;
   try {
     const groupTags = await db("group_tags")
-      .join("tags", "tags.id", "group_tags.tag_id")
+      .join("tags", "tags.id", "=", "group_tags.tag_id")
       .where("group_tags.group_id", group_id)
       .select("tags.tag");
     res.send(groupTags).status(200);
