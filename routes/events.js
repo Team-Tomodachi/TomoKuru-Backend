@@ -17,11 +17,10 @@ router.get("/", async (req, res) => {
 //Get Events without Venues
 router.get("/noVenues/", async (req, res) => {
   // #swagger.tags = ["Events"]
-
   try {
     const events = await db("events")
       .where("venue_id", nullVenueID)
-      .join("users", "venue.user_id", "=", "users.id")
+      .join("users", "events.user_id", "=", "users.id")
       .select("*");
     res.send(events).status(200);
   } catch (err) {
