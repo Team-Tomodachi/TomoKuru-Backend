@@ -61,7 +61,7 @@ router.patch("/:event_id", async (req, res) => {
   try {
     await db("events").where("id", event_id).update(edits);
     const events = await db("events")
-      .where("id, event_id")
+      .where("id", event_id)
       .select("*")
       .timeout(1500);
     res.send(events).status(200);
