@@ -5,7 +5,16 @@ const db = require("../src/knex.js");
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
   try {
-    const groupsDetails = await db("groups").select("*").timeout(1500);
+    const { query, tag } = req.query;
+    let groupsDetails;
+    if (!query || !tag) {
+      groupsDetails = await db("groups").select("*").timeout(1500);
+    }
+    if (query) {
+      groupsDetails = await db("groups")
+        .select("*")
+        .where("group_name".toLowerCase(), "ilike", `%${query}%`);
+    }
     res.send(groupsDetails).status(200);
   } catch (err) {
     res.send(err).status(400);
