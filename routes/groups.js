@@ -146,7 +146,7 @@ router.get("/messages/:group_id", async (req, res) => {
 });
 
 router.post("/messages/:group_id", async (req, res) => {
-  // #swagger.tags = ["Events_Messages"]
+  // #swagger.tags = ["Groups_Messages"]
   const { group_id } = req.params;
   const { user_id, message } = req.body;
   const now = new Date().toString();
