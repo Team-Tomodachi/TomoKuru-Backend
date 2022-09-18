@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const groupsDetails = await db("groups").select("*").timeout(1500);
     let filteredGroups = groupsDetails;
     if (query) {
-      filteredGroups = filteredGroups.filter(group => {
+      filteredGroups = filteredGroups.filter((group) => {
         return (
           group.group_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           group.group_description.toLowerCase().indexOf(`${query}`) !== -1
@@ -127,6 +127,19 @@ router.get("/usergroups/:user_id", async (req, res) => {
       .where("user_id", user_id)
       .select("*");
     res.send(members).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/messages/:group_id", async (req, res) => {
+  // #swagger.tags = ["Groups_Messages"]
+  const { group_id } = req.params;
+  try {
+    const messages = await db("group_messages")
+      .where("group_id", group_id)
+      .select("*");
+    res.send(messages).status(200);
   } catch (err) {
     res.send(err).status(404);
   }

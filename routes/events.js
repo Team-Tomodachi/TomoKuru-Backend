@@ -161,4 +161,17 @@ router.delete("/attendees/:event_id/:attendee_id", async (req, res) => {
   }
 });
 
+router.get("/messages/:event_id", async (req, res) => {
+  // #swagger.tags = ["Events_Messages"]
+  const { event_id } = req.params;
+  try {
+    const messages = await db("event_messages")
+      .where("event_id", event_id)
+      .select("*");
+    res.send(messages).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 module.exports = router;
