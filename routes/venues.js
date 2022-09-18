@@ -7,8 +7,37 @@ const contactForMore = "Please contact the venue for further details.";
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Venues"]
   try {
+    const { query, location, smoking, outdoor } = req.query;
     const venues = await db("venues").select("*").timeout(1500);
-    res.send(venues).status(200);
+    let filteredVenues = venues;
+    if (query) {
+      filteredVenues = filteredVenues.filter(venue => {
+        return (
+          venue.location_name.toLowerCase().indexOf(`${query}`) !== -1 ||
+          venue.description.toLowerCase().indexOf(`${query}`) !== -1
+        );
+      });
+    }
+    if (location) {
+      filteredVenues = filteredVenues.filter(venue => {
+        return (
+          // venue.city_ward.toLowerCase().indexOf(`${location}`) !== -1 ||
+          // venue.prefecture.toLowerCase().indexOf(`${location}`) !== -1 ||
+          venue.address.toLowerCase().indexOf(`${location}`) !== -1
+        );
+      });
+    }
+    if (smoking) {
+      filteredVenues = filteredVenues.filter(venue => {
+        return venue.smoking === smoking;
+      });
+    }
+    if (outdoor) {
+      filteredVenues = filteredVenues.filter(venue => {
+        return venue.outdoor === outdoor;
+      });
+    }
+    res.send(filteredVenues).status(200);
   } catch (err) {
     res.send(err).status(404);
   }
