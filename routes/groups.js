@@ -6,16 +6,17 @@ router.get("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
   try {
     const { query, tag } = req.query;
-    let groupsDetails;
-    if (!query || !tag) {
-      groupsDetails = await db("groups").select("*").timeout(1500);
-    }
+    const groupsDetails = await db("groups").select("*").timeout(1500);
+    let filteredGroups = groupsDetails;
     if (query) {
-      groupsDetails = await db("groups")
-        .select("*")
-        .where("group_name".toLowerCase(), "ilike", `%${query}%`);
+      filteredGroups = filteredGroups.filter(group => {
+        return (
+          group.group_name.toLowerCase().indexOf(`${query}`) !== -1 ||
+          group.group_description.toLowerCase().indexOf(`${query}`) !== -1
+        );
+      });
     }
-    res.send(groupsDetails).status(200);
+    res.send(filteredGroups).status(200);
   } catch (err) {
     res.send(err).status(400);
   }
