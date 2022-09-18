@@ -13,7 +13,28 @@
       "get": {
         "tags": ["Venues"],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "smoking",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "outdoor",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -143,18 +164,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "edits": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -236,6 +245,25 @@
           },
           {
             "name": "attendee_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/events/messages/{event_id}": {
+      "get": {
+        "tags": ["Events_Messages"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "event_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -381,6 +409,25 @@
         "parameters": [
           {
             "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/groups/messages/{group_id}": {
+      "get": {
+        "tags": ["Groups_Messages"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "string"
