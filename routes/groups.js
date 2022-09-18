@@ -145,4 +145,23 @@ router.get("/messages/:group_id", async (req, res) => {
   }
 });
 
+router.post("/messages/:group_id", async (req, res) => {
+  // #swagger.tags = ["Events_Messages"]
+  const { group_id } = req.params;
+  const { user_id, message } = req.body;
+  const now = new Date().toString();
+  const newMessage = {
+    group_id: group_id,
+    user_id: user_id,
+    message: message,
+    date: now,
+  };
+  try {
+    await db("group_messages").insert(newMessage);
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(500);
+  }
+});
+
 module.exports = router;

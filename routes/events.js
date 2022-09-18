@@ -174,4 +174,23 @@ router.get("/messages/:event_id", async (req, res) => {
   }
 });
 
+router.post("/messages/:event_id", async (req, res) => {
+  // #swagger.tags = ["Events_Messages"]
+  const { event_id } = req.params;
+  const { user_id, message } = req.body;
+  const now = new Date().toString();
+  const newMessage = {
+    event_id: event_id,
+    user_id: user_id,
+    message: message,
+    date: now,
+  };
+  try {
+    await db("event_messages").insert(newMessage);
+    res.status(200).end();
+  } catch (err) {
+    res.send(err).status(500);
+  }
+});
+
 module.exports = router;
