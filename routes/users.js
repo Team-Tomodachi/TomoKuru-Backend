@@ -26,7 +26,9 @@ router.get("/:email", async (req, res) => {
         "account_active",
         "city_ward",
         "prefecture",
-        "title"
+        "title",
+        "contact",
+        "photo_url"
       )
       .first()
       .timeout(1500);
