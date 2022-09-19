@@ -35,6 +35,19 @@ router.get("/:user_id", async (req, res) => {
   }
 });
 
+router.get("/singlegroup/:group_id", async (req, res) => {
+  // #swagger.tags = ["Groups"]
+  const { group_id } = req.params;
+  try {
+    const group = await db("groups")
+      .where("group_id", group_id)
+      .select("id", "user_id", "group_name", "group_description", "private");
+    res.send(group).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
 router.post("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
   const { group_name, group_description, user_id, private } = req.body;
