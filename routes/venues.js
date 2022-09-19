@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const venues = await db("venues").select("*").timeout(1500);
     let filteredVenues = venues;
     if (query) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return (
           venue.location_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           venue.description.toLowerCase().indexOf(`${query}`) !== -1
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
       });
     }
     if (location) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return (
           // venue.city_ward.toLowerCase().indexOf(`${location}`) !== -1 ||
           // venue.prefecture.toLowerCase().indexOf(`${location}`) !== -1 ||
@@ -28,12 +28,12 @@ router.get("/", async (req, res) => {
       });
     }
     if (smoking) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return venue.smoking === smoking;
       });
     }
     if (outdoor) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return venue.outdoor === outdoor;
       });
     }
@@ -123,7 +123,7 @@ router.post("/", async (req, res) => {
     smoking,
     outdoor_seating,
     venue_url,
-    photo_link,
+    photo_url,
     venue_type,
   } = req.body;
   const newVenue = {
@@ -139,7 +139,7 @@ router.post("/", async (req, res) => {
     smoking: smoking || "",
     outdoor_seating: outdoor_seating || false,
     venue_url: venue_url || "",
-    photo_link: photo_link || "",
+    photo_url: photo_url || "",
     venue_type: venue_type || "",
   };
   try {
@@ -158,7 +158,7 @@ router.post("/package/", async (req, res) => {
     package_per_person_cost,
     duration,
     maximum_number_of_people,
-    picture_url,
+    photo_url,
     other_notes,
     drinks,
     food,
@@ -170,7 +170,7 @@ router.post("/package/", async (req, res) => {
     package_per_person_cost: package_per_person_cost,
     duration: duration,
     maximum_number_of_people: maximum_number_of_people,
-    picture_url: picture_url || "",
+    photo_url: photo_url || "",
     other_notes: other_notes || "",
     drinks: drinks || contactForMore,
     food: food || contactForMore,
