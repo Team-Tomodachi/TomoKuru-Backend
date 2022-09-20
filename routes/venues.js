@@ -7,11 +7,11 @@ const contactForMore = "Please contact the venue for further details.";
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Venues"]
   try {
-    const { query, location, smoking, outdoor } = req.query;
+    const { query, location, smoking, outdoor, capacity } = req.query;
     const venues = await db("venues").select("*").timeout(1500);
     let filteredVenues = venues;
     if (query) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return (
           venue.location_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           venue.description.toLowerCase().indexOf(`${query}`) !== -1
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
       });
     }
     if (location) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return (
           // venue.city_ward.toLowerCase().indexOf(`${location}`) !== -1 ||
           // venue.prefecture.toLowerCase().indexOf(`${location}`) !== -1 ||
@@ -28,13 +28,18 @@ router.get("/", async (req, res) => {
       });
     }
     if (smoking) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return venue.smoking === smoking;
       });
     }
     if (outdoor) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return venue.outdoor === outdoor;
+      });
+    }
+    if (capacity) {
+      filteredVenues = filteredVenues.filter(venue => {
+        return capacity <= venue.num_seats;
       });
     }
     res.send(filteredVenues).status(200);
