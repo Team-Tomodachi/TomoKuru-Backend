@@ -10,11 +10,20 @@ router.get("/", async (req, res) => {
     //add all of the tags for the groups as well
     let filteredGroups = groupsDetails;
     if (query) {
-      filteredGroups = filteredGroups.filter((group) => {
+      filteredGroups = filteredGroups.filter(group => {
         return (
           group.group_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           group.group_description.toLowerCase().indexOf(`${query}`) !== -1
         );
+      });
+    }
+    if (tag) {
+      const groupWithTag = await db("group_tags as gt")
+        .join("tags as t", "gt.tag_id", "=", "t.id")
+        .where("t.tag", tag)
+        .select("gt.group_id");
+      filteredGroups = filteredGroups.filter(group => {
+        return groupWithTag.includes(group.id);
       });
     }
     res.send(filteredGroups).status(200);
