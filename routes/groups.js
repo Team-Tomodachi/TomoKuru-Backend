@@ -42,8 +42,28 @@ router.get("/singlegroup/:group_id", async (req, res) => {
   try {
     const group = await db("groups")
       .where("group_id", group_id)
-      .select("id", "user_id", "group_name", "group_description", "private");
-    res.send(group).status(200);
+      .join("users", "groups.user_id", "=", "users.id")
+      .select(
+        "id",
+        "user_id",
+        "first_name",
+        "group_name",
+        "group_description",
+        "private"
+      );
+    const groupTags = await db("group_tags")
+      .where("group_tags.group_id", group_id)
+      .join("tags", "group_tags.tag_id", "=", "tags.id")
+      .select("tags.tag");
+    const tagArr = [];
+    groupTags.map((element) => {
+      tagArr.push(element.tag);
+    });
+    const result = {
+      group: group,
+      tags: tagArr,
+    };
+    res.send(result).status(200);
   } catch (err) {
     res.send(err).status(404);
   }
