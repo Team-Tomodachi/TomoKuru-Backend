@@ -9,8 +9,26 @@ const nullVenueID = "298e1689-c6c9-4c22-adad-97fce8604d6f";
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Events"]
   try {
-    const events = await db("events").select("*").timeout(1500);
-    //joins for group name, venue - remove null venues
+    const events = await db("events")
+      .whereNot("venue_id", nullVenueID)
+      .join("groups", "events.group_id", "=", "group.id")
+      .join("venues", "events.venue_id", "=", "venues.id")
+      .select(
+        "events.id",
+        "events.name",
+        "events.description",
+        "events.date",
+        "events.start_time",
+        "events.end_time",
+        "events.capacity",
+        "events.venue_id",
+        "venues.location_name",
+        "events.user_id",
+        "events.group_id",
+        "groups.group_name",
+        "events.photo_url"
+      )
+      .timeout(1500);
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -187,6 +205,7 @@ router.post("/messages/:event_id", async (req, res) => {
     user_id: user_id,
     message: message,
     date: now,
+    photo_url: photo_url || "",
   };
   try {
     await db("event_messages").insert(newMessage);
