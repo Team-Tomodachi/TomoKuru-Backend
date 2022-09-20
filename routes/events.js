@@ -143,7 +143,7 @@ router.get("/userattending/:user_id", async (req, res) => {
     const eventList = await db("event_attendees")
       .where("user_id", user_id)
       .join("events", "event_attendees.event_id", "=", "events.id")
-      .select("events.name");
+      .select("events.name", "events.id");
     res.send(eventList).status(200);
   } catch (err) {
     res.send(err).status(400);

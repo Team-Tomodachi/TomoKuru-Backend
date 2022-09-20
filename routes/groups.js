@@ -60,7 +60,7 @@ router.get("/singlegroup/:group_id", async (req, res) => {
       tagArr.push(element.tag);
     });
     const result = {
-      group: group,
+      ...group,
       tags: tagArr,
     };
     res.send(result).status(200);
@@ -112,11 +112,11 @@ router.patch("/:group_id", async (req, res) => {
 router.get("/usermembership/:user_id", async (req, res) => {
   const { user_id } = req.params;
   try {
-    const eventList = await db("group_members")
+    const groupList = await db("group_members")
       .where("user_id", user_id)
       .join("groups", "group_members.group_id", "=", "groups.id")
-      .select("groups.name");
-    res.send(eventList).status(200);
+      .select("groups.name", "groups.id");
+    res.send(groupList).status(200);
   } catch (err) {
     res.send(err).status(400);
   }
