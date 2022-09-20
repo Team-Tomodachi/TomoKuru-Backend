@@ -11,9 +11,9 @@ router.get("/", async (req, res) => {
   try {
     const events = await db("events")
       .whereNot("venue_id", nullVenueID)
-      .join("groups", "events.group_id", "=", "group.id")
+      .join("groups", "events.group_id", "=", "groups.id")
       .join("venues", "events.venue_id", "=", "venues.id")
-      .join("users", "events.user_id", "=", "user.id")
+      .join("users", "events.user_id", "=", "users.id")
       .select(
         "events.id",
         "events.name",
