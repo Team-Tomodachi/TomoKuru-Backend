@@ -137,6 +137,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/userattending/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  try {
+    const eventList = await db("event_attendees")
+      .where("user_id", user_id)
+      .join("events", "event_attendees.event_id", "=", "events.id")
+      .select("events.name");
+    res.send(eventList).status(200);
+  } catch (err) {
+    res.send(err).status(400);
+  }
+});
+
 //API Related to Event attendees
 router.get("/attendees/:event_id", async (req, res) => {
   // #swagger.tags = ["Events_Attendees"]

@@ -109,6 +109,19 @@ router.patch("/:group_id", async (req, res) => {
   }
 });
 
+router.get("/usermembership/:user_id", async (req, res) => {
+  const { user_id } = req.params;
+  try {
+    const eventList = await db("group_members")
+      .where("user_id", user_id)
+      .join("groups", "group_members.group_id", "=", "groups.id")
+      .select("groups.name");
+    res.send(eventList).status(200);
+  } catch (err) {
+    res.send(err).status(400);
+  }
+});
+
 router.post("/members/:group_id/:user_id", async (req, res) => {
   // #swagger.tags = ["Groups_Members"]
   const { group_id, user_id } = req.params;
