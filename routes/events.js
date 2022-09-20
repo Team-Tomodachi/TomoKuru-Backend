@@ -4,10 +4,13 @@ const db = require("../src/knex.js");
 
 const nullVenueID = "298e1689-c6c9-4c22-adad-97fce8604d6f";
 
+//build API for GET all events where user is an attendee
+
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Events"]
   try {
     const events = await db("events").select("*").timeout(1500);
+    //joins for group name, venue - remove null venues
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -21,7 +24,7 @@ router.get("/noVenues/", async (req, res) => {
     const events = await db("events")
       .where("venue_id", nullVenueID)
       .join("users", "events.user_id", "=", "users.id")
-      .select("*");
+      .select("*"); //user name, user id, photo_url, groupp
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -167,7 +170,7 @@ router.get("/messages/:event_id", async (req, res) => {
   try {
     const messages = await db("event_messages")
       .where("event_id", event_id)
-      .select("*");
+      .select("*"); //user name (Join), message content, date, photo url
     res.send(messages).status(200);
   } catch (err) {
     res.send(err).status(404);
