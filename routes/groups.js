@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
   try {
     const { query, tag } = req.query;
     const groupsDetails = await db("groups").select("*").timeout(1500);
+    //add all of the tags for the groups as well
     let filteredGroups = groupsDetails;
     if (query) {
       filteredGroups = filteredGroups.filter((group) => {

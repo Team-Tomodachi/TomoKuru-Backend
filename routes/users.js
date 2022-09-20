@@ -38,47 +38,51 @@ router.get("/:email", async (req, res) => {
   }
 });
 
-router.get("/userlogin/:email", async (req, res) => {
-  // #swagger.tags = ["Users"]
-  const { email } = req.params;
-  try {
-    const user = await db("users")
-      .where("email", email)
-      .select(
-        "id",
-        "email",
-        "first_name",
-        "account_type",
-        "account_active",
-        "city_ward",
-        "prefecture",
-        "title"
-      )
-      .first()
-      .timeout(1500);
-    if (user.account_active !== "active") {
-      res.send("This user account has been deactivated").status(400);
-    }
-    const groups = await db("group_members")
-      .where("user_id", user.id)
-      .select("*")
-      .timeout(1500);
+// router.get("/userlogin/:email", async (req, res) => {
+//   // #swagger.tags = ["Users"]
+//   const { email } = req.params;
+//   try {
+//     const user = await db("users")
+//       .where("email", email)
+//       .select(
+//         "id",
+//         "email",
+//         "first_name",
+//         "account_type",
+//         "account_active",
+//         "city_ward",
+//         "prefecture",
+//         "title",
+//         "contact",
+//         "photo_url"
+//       )
+//       .first()
+//       .timeout(1500);
+//     if (user.account_active !== "active") {
+//       res.send("This user account has been deactivated").status(400);
+//     }
+//     const groups = await db("group_members")
+//       .where("user_id", user.id)
+//       .select("*")
+//       .timeout(1500);
 
-    const results = {
-      user_id: user.id,
-      email: user.email,
-      first_name: user.first_name,
-      account_type: user.account_type,
-      account_active: user.account_active,
-      city_ward: user.city_ward,
-      prefecture: user.prefecture,
-      groups: groups,
-    };
-    res.send(results).status(200);
-  } catch (err) {
-    res.send(err).status(404);
-  }
-});
+//     const results = {
+//       user_id: user.id,
+//       email: user.email,
+//       first_name: user.first_name,
+//       account_type: user.account_type,
+//       account_active: user.account_active,
+//       city_ward: user.city_ward,
+//       prefecture: user.prefecture,
+//       contact: user.contact,
+
+//       groups: groups,
+//     };
+//     res.send(results).status(200);
+//   } catch (err) {
+//     res.send(err).status(404);
+//   }
+// });
 
 router.get("/vendorlogin/:email", async (req, res) => {
   // #swagger.tags = ["Users"]

@@ -1,5 +1,6 @@
 [
   {
+    "id": "7f1ed93e-3990-46d4-b855-1202fc438647",
     "user_id": "bccaaf5c-779a-4254-94d9-33edc64c93f7",
     "venueName": "Hubs Shibuya",
     "venueType": "pub",
@@ -9,6 +10,7 @@
     "venueCapacity": 105
   },
   {
+    "id": "91e1ed6c-06d3-4774-aab8-b3c0daf50e42",
     "user_id": "97e55e28-0599-42d6-95d4-6cfb20827548",
     "venueName": "TY Harbor",
     "venueType": "Brew Pub",
@@ -36,6 +38,7 @@
     "venueCapacity": 197
   },
   {
+    "id": "",
     "user_id": "2094584d-5818-4a02-88c2-02f9129429a9",
     "venueName": "Rio Brewing & Co Bistro and Garden",
     "venueType": "Bistro",
@@ -45,6 +48,7 @@
     "venueCapacity": 192
   },
   {
+    "id": "1abe5a82-dd59-49bc-8130-fc1192b4b18f",
     "user_id": "0873a1d2-91cf-464b-b194-29d681bebf5b",
     "venueName": "Cé La Vi",
     "venueType": "cafe-bar",
