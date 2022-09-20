@@ -34,7 +34,11 @@ router.get("/groups/:group_id", async (req, res) => {
       .where("group_tags.group_id", group_id)
       .join("tags", "group_tags.tag_id", "=", "tags.id")
       .select("tags.tag");
-    res.send(groupTags).status(200);
+    const tagArr = [];
+    groupTags.map((element) => {
+      tagArr.push(element.tag);
+    });
+    res.send(tagArr).status(200);
   } catch (err) {
     res.send(err).status(404);
   }
