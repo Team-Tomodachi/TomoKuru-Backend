@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const venues = await db("venues").select("*").timeout(1500);
     let filteredVenues = venues;
     if (query) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return (
           venue.location_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           venue.description.toLowerCase().indexOf(`${query}`) !== -1
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
       });
     }
     if (location) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return (
           // venue.city_ward.toLowerCase().indexOf(`${location}`) !== -1 ||
           // venue.prefecture.toLowerCase().indexOf(`${location}`) !== -1 ||
@@ -28,17 +28,17 @@ router.get("/", async (req, res) => {
       });
     }
     if (smoking) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return venue.smoking === smoking;
       });
     }
     if (outdoor) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return venue.outdoor === outdoor;
       });
     }
     if (capacity) {
-      filteredVenues = filteredVenues.filter(venue => {
+      filteredVenues = filteredVenues.filter((venue) => {
         return capacity <= venue.num_seats;
       });
     }
@@ -57,6 +57,18 @@ router.get("/:id", async (req, res) => {
       .select("*")
       .timeout(1500);
     res.send(venues).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/getdetails/:venue_id", async (req, res) => {
+  const { venue_id } = req.params;
+  try {
+    const groupDetails = await db("venues")
+      .where("id", venue_id)
+      .select("id", "location_name", "city_ward", "prefecture");
+    res.send(groupDetails).status(200);
   } catch (err) {
     res.send(err).status(404);
   }

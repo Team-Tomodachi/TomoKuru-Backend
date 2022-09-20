@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     //add all of the tags for the groups as well
     let filteredGroups = groupsDetails;
     if (query) {
-      filteredGroups = filteredGroups.filter(group => {
+      filteredGroups = filteredGroups.filter((group) => {
         return (
           group.group_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           group.group_description.toLowerCase().indexOf(`${query}`) !== -1
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
         .join("tags as t", "gt.tag_id", "=", "t.id")
         .where("t.tag", tag)
         .select("gt.group_id");
-      filteredGroups = filteredGroups.filter(group => {
+      filteredGroups = filteredGroups.filter((group) => {
         return groupWithTag.includes(group.id);
       });
     }
@@ -40,6 +40,18 @@ router.get("/:user_id", async (req, res) => {
       .where("user_id", user_id)
       .select("id", "user_id", "group_name", "group_description", "private");
     res.send(groups).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/getname/:group_id", async (req, res) => {
+  const { group_id } = req.params;
+  try {
+    const groupDetails = await db("groups")
+      .where("id", group_id)
+      .select("id", "group_name");
+    res.send(groupDetails).status(200);
   } catch (err) {
     res.send(err).status(404);
   }
