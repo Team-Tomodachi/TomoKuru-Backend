@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
       .whereNot("venue_id", nullVenueID)
       .join("groups", "events.group_id", "=", "group.id")
       .join("venues", "events.venue_id", "=", "venues.id")
+      .join("users", "events.user_id", "=", "user.id")
       .select(
         "events.id",
         "events.name",
@@ -24,6 +25,8 @@ router.get("/", async (req, res) => {
         "events.venue_id",
         "venues.location_name",
         "events.user_id",
+        "users.first_name",
+        "users.email",
         "events.group_id",
         "groups.group_name",
         "events.photo_url"
@@ -188,7 +191,8 @@ router.get("/messages/:event_id", async (req, res) => {
   try {
     const messages = await db("event_messages")
       .where("event_id", event_id)
-      .select("*"); //user name (Join), message content, date, photo url
+      .join("users", "event_messages.user_id", "=", "users.id")
+      .select("event_messages"); //user name (Join), message content, date, photo url
     res.send(messages).status(200);
   } catch (err) {
     res.send(err).status(404);
