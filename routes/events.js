@@ -192,7 +192,13 @@ router.get("/messages/:event_id", async (req, res) => {
     const messages = await db("event_messages")
       .where("event_id", event_id)
       .join("users", "event_messages.user_id", "=", "users.id")
-      .select("event_messages"); //user name (Join), message content, date, photo url
+      .select(
+        "event_messages.user_id",
+        "users.first_name",
+        "event_messages.message",
+        "event_messages.date",
+        "event_messages.photo_url"
+      );
     res.send(messages).status(200);
   } catch (err) {
     res.send(err).status(404);
