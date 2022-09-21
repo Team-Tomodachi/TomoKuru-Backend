@@ -134,9 +134,9 @@ router.get("/usermembership/:user_id", async (req, res) => {
   const { user_id } = req.params;
   try {
     const groupList = await db("group_members")
-      .where("user_id", user_id)
+      .where("group_members.user_id", user_id)
       .join("groups", "group_members.group_id", "=", "groups.id")
-      .select("groups.name", "groups.id");
+      .select("groups.group_name", "group_members.group_id");
     res.send(groupList).status(200);
   } catch (err) {
     res.send(err).status(400);

@@ -140,10 +140,12 @@ router.post("/", async (req, res) => {
 router.get("/userattending/:user_id", async (req, res) => {
   const { user_id } = req.params;
   try {
+    console.log(user_id);
     const eventList = await db("event_attendees")
-      .where("user_id", user_id)
+      .where("event_attendees.user_id", user_id)
       .join("events", "event_attendees.event_id", "=", "events.id")
-      .select("events.name", "events.id");
+      .select("events.name", "event_attendees.event_id");
+    console.log(` EVENT LIST => ${eventList}`);
     res.send(eventList).status(200);
   } catch (err) {
     res.send(err).status(400);
