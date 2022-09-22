@@ -99,7 +99,8 @@ router.get("/vendorlogin/:email", async (req, res) => {
         "account_active",
         "city_ward",
         "prefecture",
-        "title"
+        "title",
+        "photo_url"
       )
       .first()
       .timeout(1500);
@@ -121,6 +122,7 @@ router.get("/vendorlogin/:email", async (req, res) => {
       account_active: user.account_active,
       city_ward: user.city_ward,
       prefecture: user.prefecture,
+      photo_url: user.photo_url,
       venues: venues ? venues : "Currently, you do not have any venues",
     };
     res.send(results).status(200);

@@ -67,7 +67,7 @@ router.get("/getdetails/:venue_id", async (req, res) => {
   try {
     const groupDetails = await db("venues")
       .where("id", venue_id)
-      .select("id", "location_name", "city_ward", "prefecture");
+      .select("id", "location_name", "city_ward", "prefecture", "photo_url");
     res.send(groupDetails).status(200);
   } catch (err) {
     res.send(err).status(404);
