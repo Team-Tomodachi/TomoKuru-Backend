@@ -166,7 +166,7 @@ router.get("/members/:group_id", async (req, res) => {
       .where("group_id", group_id)
       .join("users", "group_members.user_id", "=", "users.id")
       .select(
-        "group_member.group_id",
+        "group_members.group_id",
         "group_members.user_id",
         "users.first_name"
       );
