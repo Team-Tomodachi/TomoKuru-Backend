@@ -38,7 +38,14 @@ router.get("/:user_id", async (req, res) => {
   try {
     const groups = await db("groups")
       .where("user_id", user_id)
-      .select("id", "user_id", "group_name", "group_description", "private");
+      .select(
+        "id",
+        "user_id",
+        "group_name",
+        "group_description",
+        "private",
+        "photo_url"
+      );
     res.send(groups).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -70,7 +77,8 @@ router.get("/singlegroup/:group_id", async (req, res) => {
         "first_name",
         "group_name",
         "group_description",
-        "private"
+        "private",
+        "photo_url"
       );
     const groupTags = await db("group_tags")
       .where("group_tags.group_id", group_id)
