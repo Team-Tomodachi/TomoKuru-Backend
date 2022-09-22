@@ -140,6 +140,7 @@ router.post("/", async (req, res) => {
     prefecture,
     title,
     contact,
+    photo_url,
   } = req.body;
   const newUser = {
     account_active: "active",
@@ -151,6 +152,7 @@ router.post("/", async (req, res) => {
     prefecture: prefecture || "",
     title: title || "",
     contact: contact || "",
+    photo_url: photo_url || "",
   };
   try {
     await db("users").insert(newUser);
@@ -164,7 +166,8 @@ router.post("/", async (req, res) => {
         "city_ward",
         "prefecture",
         "title",
-        "contact"
+        "contact",
+        "photo_url"
       );
     res.send(userDetail).status(200);
   } catch (err) {
