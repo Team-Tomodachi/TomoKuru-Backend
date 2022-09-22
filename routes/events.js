@@ -117,6 +117,7 @@ router.post("/", async (req, res) => {
     start_time,
     end_time,
     capacity,
+    photo_url
   } = req.body;
   const newEvent = {
     user_id: user_id,
@@ -127,6 +128,7 @@ router.post("/", async (req, res) => {
     start_time: start_time,
     end_time: end_time || "",
     capacity: capacity || 0,
+    photo_url: photo_url || null
   };
 
   try {
