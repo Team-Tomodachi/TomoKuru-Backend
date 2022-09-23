@@ -22,8 +22,12 @@ router.get("/", async (req, res) => {
         .join("tags as t", "gt.tag_id", "=", "t.id")
         .where("t.tag", tag)
         .select("gt.group_id");
+      const groupWithTagARR = [];
+      groupWithTag.map((group) => {
+        groupWithTagARR.push(group.group_id);
+      });
       filteredGroups = filteredGroups.filter((group) => {
-        return groupWithTag.includes(group.id);
+        return groupWithTagARR.indexOf(`${group.id}`) !== -1;
       });
     }
     res.send(filteredGroups).status(200);
