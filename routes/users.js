@@ -28,7 +28,7 @@ router.get("/:email", async (req, res) => {
         "prefecture",
         "title",
         "contact",
-        "photo_url"
+        "photo_url",
       )
       .first()
       .timeout(1500);
@@ -99,7 +99,7 @@ router.get("/vendorlogin/:email", async (req, res) => {
         "account_active",
         "city_ward",
         "prefecture",
-        "title"
+        "title",
       )
       .first()
       .timeout(1500);
@@ -164,7 +164,7 @@ router.post("/", async (req, res) => {
         "city_ward",
         "prefecture",
         "title",
-        "contact"
+        "contact",
       );
     res.send(userDetail).status(200);
   } catch (err) {
@@ -205,6 +205,65 @@ router.delete("/:user_id", async (req, res) => {
     res.status(200).end();
   } catch (err) {
     res.send(err).status(404);
+  }
+});
+
+router.get("/:user_id/groups/creator", async (req, res) => {
+  const { user_id } = req.params;
+
+  try {
+    const groups = await db("groups")
+      .where("user_id", user_id)
+      .select("id", "group_name", "group_description", "photo_url");
+    res.send(groups).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/:user_id/groups/member", async (req, res) => {
+  const { user_id } = req.params;
+
+  try {
+    const groups = await db("group_members")
+      .where("user_id", user_id)
+      .join("groups", "group_members.group_id", "=", "groups.id")
+      .select(
+        "groups.id",
+        "groups.group_name",
+        "groups.group_description",
+        "groups.photo_url",
+      );
+    res.send(groups).status(200);
+  } catch (err) {
+    res.send(err).status(400);
+  }
+});
+
+router.get("/:user_id/events/creator", async (req, res) => {
+  const { user_id } = req.params;
+
+  try {
+    const events = await db("events")
+      .where("user_id", user_id)
+      .select("events.id", "events.name");
+    res.send(events).status(200);
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.get("/:user_id/events/attendee", async (req, res) => {
+  const { user_id } = req.params;
+
+  try {
+    const events = await db("event_attendees")
+      .where("user_id", user_id)
+      .join("events", "event_attendees.event_id", "=", "events.id")
+      .select("events.id", "events.name");
+    res.send(events).status(200);
+  } catch (err) {
+    res.send(err).status(400);
   }
 });
 
