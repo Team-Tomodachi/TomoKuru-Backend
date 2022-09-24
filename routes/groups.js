@@ -5,12 +5,15 @@ const db = require("../src/knex.js");
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
   try {
-    const { query, tag } = req.query;
+    const { limit, query, tag } = req.query;
     const groupsDetails = await db("groups").select("*").timeout(1500);
     //add all of the tags for the groups as well
     let filteredGroups = groupsDetails;
+    if (limit) {
+      filteredGroups = filteredGroups.slice(0, limit - 1);
+    }
     if (query) {
-      filteredGroups = filteredGroups.filter((group) => {
+      filteredGroups = filteredGroups.filter(group => {
         return (
           group.group_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           group.group_description.toLowerCase().indexOf(`${query}`) !== -1
@@ -22,7 +25,7 @@ router.get("/", async (req, res) => {
         .join("tags as t", "gt.tag_id", "=", "t.id")
         .where("t.tag", tag)
         .select("gt.group_id");
-      filteredGroups = filteredGroups.filter((group) => {
+      filteredGroups = filteredGroups.filter(group => {
         return groupWithTag.includes(group.id);
       });
     }
@@ -70,14 +73,14 @@ router.get("/singlegroup/:group_id", async (req, res) => {
         "first_name",
         "group_name",
         "group_description",
-        "private"
+        "private",
       );
     const groupTags = await db("group_tags")
       .where("group_tags.group_id", group_id)
       .join("tags", "group_tags.tag_id", "=", "tags.id")
       .select("tags.tag");
     const tagArr = [];
-    groupTags.map((element) => {
+    groupTags.map(element => {
       tagArr.push(element.tag);
     });
     const result = {

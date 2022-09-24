@@ -8,6 +8,7 @@ const nullVenueID = "298e1689-c6c9-4c22-adad-97fce8604d6f";
 
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Events"]
+  const { limit } = req.query;
   try {
     const events = await db("events")
       .whereNot("venue_id", nullVenueID)
@@ -32,6 +33,10 @@ router.get("/", async (req, res) => {
         "events.photo_url",
       )
       .timeout(1500);
+    if (limit) {
+      res.send(events.slice(0, limit - 1)).status(200);
+      return;
+    }
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
