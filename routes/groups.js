@@ -104,12 +104,14 @@ router.get("/singlegroup/:group_id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
-  const { group_name, group_description, user_id, private } = req.body;
+  const { group_name, group_description, user_id, private, photo_url } =
+    req.body;
   const newGroup = {
     group_name: group_name,
     group_description: group_description,
     user_id: user_id,
     private: private,
+    photo_url: photo_url || "",
   };
   try {
     await db("groups").insert(newGroup);
