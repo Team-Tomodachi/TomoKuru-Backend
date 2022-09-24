@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../src/knex.js");
 
 const nullVenueID = "298e1689-c6c9-4c22-adad-97fce8604d6f";
+const nullGroupID = "dea429c6-f127-4023-a52e-6e1a689c8a12";
 
 //build API for GET all events where user is an attendee
 
@@ -111,24 +112,26 @@ router.post("/", async (req, res) => {
   const {
     user_id,
     venue_id,
+    group_id,
     name,
     description,
     date,
     start_time,
     end_time,
     capacity,
-    photo_url
+    photo_url,
   } = req.body;
   const newEvent = {
     user_id: user_id,
     venue_id: venue_id || nullVenueID,
+    group_id: group_id || nullGroupID,
     name: name,
     description: description,
     date: date,
     start_time: start_time,
     end_time: end_time || "",
     capacity: capacity || 0,
-    photo_url: photo_url || null
+    photo_url: photo_url || null,
   };
 
   try {
