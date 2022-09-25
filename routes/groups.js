@@ -85,10 +85,7 @@ router.get("/singlegroup/:group_id", async (req, res) => {
         "group_name",
         "group_description",
         "private",
-<<<<<<< HEAD
         "photo_url"
-=======
->>>>>>> misc-addition
       );
     const groupTags = await db("group_tags")
       .where("group_tags.group_id", group_id)
