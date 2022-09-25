@@ -9,6 +9,7 @@ const nullGroupID = "dea429c6-f127-4023-a52e-6e1a689c8a12";
 
 router.get("/", async (req, res) => {
   // #swagger.tags = ["Events"]
+  const { limit } = req.query;
   try {
     const events = await db("events")
       .whereNot("venue_id", nullVenueID)
@@ -30,9 +31,13 @@ router.get("/", async (req, res) => {
         "users.email",
         "events.group_id",
         "groups.group_name",
-        "events.photo_url"
+        "events.photo_url",
       )
       .timeout(1500);
+    if (limit) {
+      res.send(events.slice(0, limit - 1)).status(200);
+      return;
+    }
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
@@ -217,7 +222,7 @@ router.get("/messages/:event_id", async (req, res) => {
         "users.first_name",
         "event_messages.message",
         "event_messages.date",
-        "event_messages.photo_url"
+        "event_messages.photo_url",
       );
     res.send(messages).status(200);
   } catch (err) {
@@ -242,6 +247,36 @@ router.post("/messages/:event_id", async (req, res) => {
     res.status(200).end();
   } catch (err) {
     res.send(err).status(500);
+  }
+});
+
+router.get("/:event_id", async (req, res) => {
+  const { event_id } = req.params;
+
+  try {
+    const events = await db("events")
+      .where("venue_id", event_id)
+      .join("groups", "events.group_id", "=", "groups.id")
+      .join("venues", "events.venue_id", "=", "venues.id")
+      .join("users", "events.user_id", "=", "users.id")
+      .select(
+        "events.id",
+        "events.name",
+        "events.description",
+        "events.date",
+        "events.start_time",
+        "events.end_time",
+        "events.capacity",
+        "events.venue_id",
+        "venues.location_name",
+        "events.group_id",
+        "groups.group_name",
+        "events.photo_url",
+      )
+      .timeout(1500);
+    res.send(events).status(200);
+  } catch (err) {
+    res.send(err).status(404);
   }
 });
 
