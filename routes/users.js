@@ -100,10 +100,7 @@ router.get("/vendorlogin/:email", async (req, res) => {
         "city_ward",
         "prefecture",
         "title",
-<<<<<<< HEAD
         "photo_url"
-=======
->>>>>>> misc-addition
       )
       .first()
       .timeout(1500);
@@ -172,10 +169,7 @@ router.post("/", async (req, res) => {
         "prefecture",
         "title",
         "contact",
-<<<<<<< HEAD
         "photo_url"
-=======
->>>>>>> misc-addition
       );
     res.send(userDetail).status(200);
   } catch (err) {
