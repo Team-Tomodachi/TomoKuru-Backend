@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
       filteredVenues = filteredVenues.slice(0, limit - 1);
     }
     if (query) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return (
           venue.location_name.toLowerCase().indexOf(`${query}`) !== -1 ||
           venue.description.toLowerCase().indexOf(`${query}`) !== -1
@@ -22,26 +22,26 @@ router.get("/", async (req, res) => {
       });
     }
     if (location) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return (
-          // venue.city_ward.toLowerCase().indexOf(`${location}`) !== -1 ||
-          // venue.prefecture.toLowerCase().indexOf(`${location}`) !== -1 ||
+          venue.city_ward.toLowerCase().indexOf(`${location}`) !== -1 ||
+          venue.prefecture.toLowerCase().indexOf(`${location}`) !== -1 ||
           venue.address.toLowerCase().indexOf(`${location}`) !== -1
         );
       });
     }
     if (smoking) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return venue.smoking === smoking;
       });
     }
     if (outdoor) {
-      filteredVenues = filteredVenues.filter((venue) => {
-        return venue.outdoor_seating === outdoor;
+      filteredVenues = filteredVenues.filter(venue => {
+        return venue.outdoor_seating === !!outdoor;
       });
     }
     if (capacity) {
-      filteredVenues = filteredVenues.filter((venue) => {
+      filteredVenues = filteredVenues.filter(venue => {
         return capacity <= venue.num_seats;
       });
     }

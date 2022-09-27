@@ -26,10 +26,10 @@ router.get("/", async (req, res) => {
         .where("t.tag", tag)
         .select("gt.group_id");
       const groupWithTagARR = [];
-      groupWithTag.map((group) => {
+      groupWithTag.map(group => {
         groupWithTagARR.push(group.group_id);
       });
-      filteredGroups = filteredGroups.filter((group) => {
+      filteredGroups = filteredGroups.filter(group => {
         return groupWithTagARR.indexOf(`${group.id}`) !== -1;
       });
     }
@@ -51,7 +51,7 @@ router.get("/:user_id", async (req, res) => {
         "group_name",
         "group_description",
         "private",
-        "photo_url"
+        "photo_url",
       );
     res.send(groups).status(200);
   } catch (err) {
@@ -85,7 +85,7 @@ router.get("/singlegroup/:group_id", async (req, res) => {
         "group_name",
         "group_description",
         "private",
-        "photo_url"
+        "photo_url",
       );
     const groupTags = await db("group_tags")
       .where("group_tags.group_id", group_id)
@@ -107,7 +107,7 @@ router.get("/singlegroup/:group_id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   // #swagger.tags = ["Groups"]
-  const { group_name, group_description, user_id, private, photo_url } =
+  const { group_name, group_description, user_id, private, photo_url, tag_id } =
     req.body;
   const newGroup = {
     group_name: group_name,
@@ -117,8 +117,12 @@ router.post("/", async (req, res) => {
     photo_url: photo_url || "",
   };
   try {
-    await db("groups").insert(newGroup);
-    res.status(200).end();
+    const group_id = await db("groups").insert(newGroup).returning("id");
+    await db("group_tags").insert({
+      group_id: group_id[0].id,
+      tag_id: tag_id,
+    });
+    res.status(204).end();
   } catch (err) {
     res.send(err).status(500);
   }
@@ -142,6 +146,18 @@ router.patch("/:group_id", async (req, res) => {
   try {
     await db("groups").where("id", group_id).update(edits);
     res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.delete("/:group_id", async (req, res) => {
+  // #swagger.tags = ["Groups"]
+  const { group_id } = req.params;
+
+  try {
+    await db("groups").where("id", group_id).del();
+    res.status(204).end();
   } catch (err) {
     res.send(err).status(404);
   }
@@ -185,7 +201,7 @@ router.get("/members/:group_id", async (req, res) => {
       .select(
         "group_members.group_id",
         "group_members.user_id",
-        "users.first_name"
+        "users.first_name",
       );
     res.send(members).status(200);
   } catch (err) {
