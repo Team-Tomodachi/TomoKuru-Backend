@@ -117,12 +117,12 @@ router.post("/", async (req, res) => {
     photo_url: photo_url || "",
   };
   try {
-    const group_id = await db("groups").insert(newGroup).select("id");
+    const group_id = await db("groups").insert(newGroup).returning("id");
     await db("group_tags").insert({
-      group_id: group_id,
+      group_id: group_id[0].id,
       tag_id: tag_id,
     });
-    res.status(200).end();
+    res.status(204).end();
   } catch (err) {
     res.send(err).status(500);
   }
@@ -146,6 +146,18 @@ router.patch("/:group_id", async (req, res) => {
   try {
     await db("groups").where("id", group_id).update(edits);
     res.status(200).end();
+  } catch (err) {
+    res.send(err).status(404);
+  }
+});
+
+router.delete("/:group_id", async (req, res) => {
+  // #swagger.tags = ["Groups"]
+  const { group_id } = req.params;
+
+  try {
+    await db("groups").where("id", group_id).del();
+    res.status(204).end();
   } catch (err) {
     res.send(err).status(404);
   }
