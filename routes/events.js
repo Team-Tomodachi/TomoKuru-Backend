@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../src/knex.js");
 
 const nullVenueID = "298e1689-c6c9-4c22-adad-97fce8604d6f";
-const nullGroupID = "dea429c6-f127-4023-a52e-6e1a689c8a12";
+const nullGroupID = "d3af7fa4-4ecb-456b-98d5-9a6464431886";
 
 //build API for GET all events where user is an attendee
 
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
         "users.email",
         "events.group_id",
         "groups.group_name",
-        "events.photo_url",
+        "events.photo_url"
       )
       .timeout(1500);
     if (limit) {
@@ -222,7 +222,7 @@ router.get("/messages/:event_id", async (req, res) => {
         "users.first_name",
         "event_messages.message",
         "event_messages.date",
-        "event_messages.photo_url",
+        "event_messages.photo_url"
       );
     res.send(messages).status(200);
   } catch (err) {
@@ -271,7 +271,7 @@ router.get("/:event_id", async (req, res) => {
         "venues.location_name",
         "events.group_id",
         "groups.group_name",
-        "events.photo_url",
+        "events.photo_url"
       )
       .timeout(1500);
     res.send(events).status(200);
