@@ -51,7 +51,19 @@ router.get("/noVenues/", async (req, res) => {
     const events = await db("events")
       .where("venue_id", nullVenueID)
       .join("users", "events.user_id", "=", "users.id")
-      .select("*"); //user name, user id, photo_url, groupp
+      .select(
+        "events.id",
+        "events.photo_url",
+        "events.name",
+        "events.user_id",
+        "events.date",
+        "events.start_time",
+        "events.end_time",
+        "events.description",
+        "events.capacity",
+        "users.first_name",
+        "users.email"
+      ); //user name, user id, photo_url, groupp
     res.send(events).status(200);
   } catch (err) {
     res.send(err).status(404);
