@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
       )
       .timeout(1500);
     if (limit) {
-      res.send(events.slice(0, limit - 1)).status(200);
+      res.send(events.slice(0, limit)).status(200);
       return;
     }
     res.send(events).status(200);
@@ -160,6 +160,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/userattending/:user_id", async (req, res) => {
+  // #swagger.tags = ["Events"]
   const { user_id } = req.params;
   try {
     console.log(user_id);

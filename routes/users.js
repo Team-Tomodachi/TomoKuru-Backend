@@ -28,7 +28,7 @@ router.get("/:email", async (req, res) => {
         "prefecture",
         "title",
         "contact",
-        "photo_url",
+        "photo_url"
       )
       .first()
       .timeout(1500);
@@ -37,52 +37,6 @@ router.get("/:email", async (req, res) => {
     res.send(err).status(404);
   }
 });
-
-// router.get("/userlogin/:email", async (req, res) => {
-//   // #swagger.tags = ["Users"]
-//   const { email } = req.params;
-//   try {
-//     const user = await db("users")
-//       .where("email", email)
-//       .select(
-//         "id",
-//         "email",
-//         "first_name",
-//         "account_type",
-//         "account_active",
-//         "city_ward",
-//         "prefecture",
-//         "title",
-//         "contact",
-//         "photo_url"
-//       )
-//       .first()
-//       .timeout(1500);
-//     if (user.account_active !== "active") {
-//       res.send("This user account has been deactivated").status(400);
-//     }
-//     const groups = await db("group_members")
-//       .where("user_id", user.id)
-//       .select("*")
-//       .timeout(1500);
-
-//     const results = {
-//       user_id: user.id,
-//       email: user.email,
-//       first_name: user.first_name,
-//       account_type: user.account_type,
-//       account_active: user.account_active,
-//       city_ward: user.city_ward,
-//       prefecture: user.prefecture,
-//       contact: user.contact,
-
-//       groups: groups,
-//     };
-//     res.send(results).status(200);
-//   } catch (err) {
-//     res.send(err).status(404);
-//   }
-// });
 
 router.get("/vendorlogin/:email", async (req, res) => {
   // #swagger.tags = ["Users"]
@@ -100,7 +54,7 @@ router.get("/vendorlogin/:email", async (req, res) => {
         "city_ward",
         "prefecture",
         "title",
-        "photo_url",
+        "photo_url"
       )
       .first()
       .timeout(1500);
@@ -169,7 +123,7 @@ router.post("/", async (req, res) => {
         "prefecture",
         "title",
         "contact",
-        "photo_url",
+        "photo_url"
       );
     res.send(userDetail).status(200);
   } catch (err) {
@@ -214,6 +168,7 @@ router.delete("/:user_id", async (req, res) => {
 });
 
 router.get("/:user_id/groups/creator", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { user_id } = req.params;
 
   try {
@@ -225,6 +180,7 @@ router.get("/:user_id/groups/creator", async (req, res) => {
 });
 
 router.get("/:user_id/groups/member", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { user_id } = req.params;
 
   try {
@@ -239,6 +195,7 @@ router.get("/:user_id/groups/member", async (req, res) => {
 });
 
 router.get("/:user_id/events/creator", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { user_id } = req.params;
 
   try {
@@ -250,6 +207,7 @@ router.get("/:user_id/events/creator", async (req, res) => {
 });
 
 router.get("/:user_id/events/attendee", async (req, res) => {
+  // #swagger.tags = ["Users"]
   const { user_id } = req.params;
 
   try {
