@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "TOMOKURU",
+    "title": "TomoKuru",
     "description": ""
   },
-  "host": "tomokuru.i-re.io/",
-  "basePath": "api/",
+  "host": "tomokuru.i-re.io",
+  "basePath": "/api",
   "schemes": ["http"],
   "paths": {
     "/venues": {
@@ -14,6 +14,11 @@
         "tags": ["Venues"],
         "description": "",
         "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          },
           {
             "name": "query",
             "in": "query",
@@ -31,6 +36,11 @@
           },
           {
             "name": "outdoor",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "capacity",
             "in": "query",
             "type": "string"
           }
@@ -87,7 +97,7 @@
                 "venue_url": {
                   "example": "any"
                 },
-                "photo_link": {
+                "photo_url": {
                   "example": "any"
                 },
                 "venue_type": {
@@ -188,6 +198,41 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/events/userattending/{user_id}": {
+      "get": {
+        "tags": ["Events"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/events/attendees/{event_id}": {
@@ -257,13 +302,13 @@
         }
       }
     },
-    "/events/messages/{event_id}": {
-      "get": {
-        "tags": ["Events_Messages"],
+    "/users/{user_id}": {
+      "delete": {
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
-            "name": "event_id",
+            "name": "user_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -276,13 +321,32 @@
         }
       }
     },
-    "/users/{user_id}": {
-      "delete": {
-        "tags": ["Users"],
+    "/groups/getname/{group_id}": {
+      "get": {
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
-            "name": "user_id",
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/groups/singlegroup/{group_id}": {
+      "get": {
+        "tags": ["Groups"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -321,6 +385,45 @@
         "parameters": [
           {
             "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Groups"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/groups/usermembership/{user_id}": {
+      "get": {
+        "tags": ["Groups"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -409,25 +512,6 @@
         "parameters": [
           {
             "name": "user_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/groups/messages/{group_id}": {
-      "get": {
-        "tags": ["Groups_Messages"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -572,25 +656,6 @@
         }
       }
     },
-    "/users/userlogin/{email}": {
-      "get": {
-        "tags": ["Users"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/users/vendorlogin/{email}": {
       "get": {
         "tags": ["Users"],
@@ -617,6 +682,82 @@
         "parameters": [
           {
             "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/groups/creator": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/groups/member": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/events/creator": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/events/attendee": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -670,6 +811,25 @@
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/venues/getdetails/{venue_id}": {
+      "get": {
+        "tags": ["Venues"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "venue_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -746,7 +906,7 @@
                 "maximum_number_of_people": {
                   "example": "any"
                 },
-                "picture_url": {
+                "photo_url": {
                   "example": "any"
                 },
                 "other_notes": {
